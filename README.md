@@ -1,2 +1,2 @@
-# CMSC-508-Producer-Database-Final-Project
+# producer-db
 Spring 2020 final project for CMSC 508 at VCU
