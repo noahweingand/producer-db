@@ -138,4 +138,4 @@ CREATE TABLE hasAffiliation(
 	affiliationID	int,
 	PRIMARY KEY (producerID, affiliationID),
 	FOREIGN KEY (producerID) REFERENCES producer(ID), 
-	FOREIGN KEY (affiliationID) REFERENCES affiliation(ID)); 
+	FOREIGN KEY (affiliationID) REFERENCES affiliation(ID));
