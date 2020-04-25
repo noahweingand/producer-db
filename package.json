@@ -1,0 +1,33 @@
+{
+  "name": "producer-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.12.0",
+    "core-js": "^3.6.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jquery": "^3.5.0",
+    "jsonwebtoken": "^7.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahweingand/producer-db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noahweingand/producer-db/issues"
+  },
+  "homepage": "https://github.com/noahweingand/producer-db#readme"
+}
