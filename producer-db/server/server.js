@@ -9,11 +9,15 @@ const app = express();
 //MiddleWare dependencies with express
 app.use(bodyParser.json());
 app.use(cors()); 
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // begin handle routes/accessing the server
 
 const posts = require('./routes/api/posts'); 
 app.use('/api/posts', posts);  // tell the server to look in our posts.js file for any routing that goes through there.
+
+const users = require('./routes/api/users');
+app.use('/api/users', users);
 
 const port = process.env.PORT || 8088;  // use whatever port the environment wants or 8088
 
