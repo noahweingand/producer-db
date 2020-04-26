@@ -41,8 +41,14 @@ export default {
     }
   }, 
   methods: {
-    async loginUser(){
-      await LoginService.loginUser(this.email, this.password); 
+    async loginUser(event){
+      event.preventDefault(); 
+      try{
+        let message = await LoginService.loginUser(this.email, this.password); 
+        console.log(message.status); 
+      }catch(err){
+        console.log('bad login'); 
+      }
     }
   }
 }
