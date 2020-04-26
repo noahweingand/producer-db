@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const posts = require('./routes/api/posts'); 
 app.use('/api/posts', posts);  // tell the server to look in our posts.js file for any routing that goes through there.
 
-const users = require('./routes/api/users');
+const users = require('./routes/api/Users');
 app.use('/api/users', users);
 
 const port = process.env.PORT || 8088;  // use whatever port the environment wants or 8088
