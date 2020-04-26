@@ -58,10 +58,12 @@ users.post("/login", (req, res) => {
                 let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
                     expiresIn: 1440
                 })
+                console.log('logged in')
                 res.send(token)
             }
         }
         else {
+            console.log('not logged in')
             res.status(400).json({error: 'User does not exist'})
         }
     })

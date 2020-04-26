@@ -19,7 +19,7 @@ app.use('/api/posts', posts);  // tell the server to look in our posts.js file f
 const users = require('./routes/api/Users');
 app.use('/api/users', users);
 
-const port = process.env.PORT || 8088;  // use whatever port the environment wants or 8088
+const port = process.env.PORT || 8080;  // use whatever port the environment wants or 8088
 
 app.listen(port, () => {
     console.log('server connected at ' + port);

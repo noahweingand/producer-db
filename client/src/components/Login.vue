@@ -1,25 +1,24 @@
 <template>
   <div class="hello">
-      <h1>{{ msg }}</h1>
         <div class="wrapper fadeInDown">
       <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
         <div class="fadeIn first">
-          
+          <h1>{{ msg }}</h1>
         </div>
 
     <!-- Login Form -->
         <form>
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-          <input type="submit" class="fadeIn fourth" value="Log In">
+          <input type="text" id="login" v-model="email" class="fadeIn second" name="login" placeholder="email">
+          <input type="text" id="password" v-model="password" class="fadeIn third" name="login" placeholder="password">
+          <input v-on:click="loginUser" type="submit" class="fadeIn fourth" value="Login">
         </form>
 
     <!-- Remind Passowrd -->
         <div id="formFooter">
-          <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
+           <a class="underlineHover" href="#">Register</a>
         </div>
 
       </div>
@@ -28,10 +27,23 @@
 </template>
 
 <script>
+import LoginService from '../LoginService'; 
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  }, 
+  data(){
+    return{
+      email: '',
+      password: ''
+    }
+  }, 
+  methods: {
+    async loginUser(){
+      await LoginService.loginUser(this.email, this.password); 
+    }
   }
 }
 </script>
