@@ -45,7 +45,7 @@ export default {
       event.preventDefault(); 
       try{
         let message = await LoginService.loginUser(this.email, this.password); 
-        console.log(message.status); 
+        console.log(message); 
       }catch(err){
         console.log('bad login'); 
       }

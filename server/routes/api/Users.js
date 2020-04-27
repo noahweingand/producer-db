@@ -10,6 +10,7 @@ users.use(cors())
 process.env.SECRET_KEY = 'secret'
 
 users.post("/register", (req, res) => {
+    // need to check if user actually submitted data in each field
     const today = new Date().toJSON();
     const userData = {
         first_name: req.body.first_name,
@@ -60,7 +61,8 @@ users.post("/login", (req, res) => {
                     expiresIn: 1440
                 })
                 console.log('logged in')
-                res.send(token)
+                console.log(token); 
+                res.send(token); 
             }
         }
         else {
