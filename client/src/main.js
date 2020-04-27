@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css'; 
 
 // import the vue components for routing
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
+import Login from './components/Login.vue'; 
+import Register from './components/Register.vue'; 
+import Home from './components/Home.vue'; 
 
 Vue.use(BootstrapVue); 
 Vue.use(VueRouter); 
@@ -18,9 +19,8 @@ const router = new VueRouter({
   routes : [
     {
       path: '/', 
-      redirect : {
-        name: 'Login'
-      }
+      name: 'Home', 
+      component: Home
     },
     {
       path: '/Login', 
