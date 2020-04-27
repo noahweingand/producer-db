@@ -6,19 +6,22 @@
 
     <!-- Icon -->
         <div class="fadeIn first">
-          <h1>Login</h1>
+          <h1>Register</h1>
         </div>
 
     <!-- Login Form -->
         <form>
+          <input type="text" id="first-name" v-model="first_name" class="fadein third" name="login" placeholder="First Name">
+          <input type="text" id="last-name" v-model="last_name" class="fadein third" name="login" placeholder="Last Name">
           <input type="text" id="login" v-model="email" class="fadeIn second" name="login" placeholder="email">
           <input type="password" id="password" v-model="password" class="fadeIn third" name="login" placeholder="password">
-          <input v-on:click="loginUser" type="submit" class="fadeIn fourth" value="Login">
+          <input type="password" id="c-password" v-model="c_password" class="fadeIn third" name="login" placeholder="confirm password">
+          <input v-on:click="registerUser" type="submit" class="fadeIn fourth" value="Register">
         </form>
 
     <!-- Remind Passowrd -->
         <div id="formFooter">
-           <router-link :to="{name: 'Register', params: {msg: 'Register'}}" class="underlineHover">Register</router-link>
+           <router-link to="/Login" class="underlineHover">Cancel</router-link>
         </div>
 
       </div>
@@ -30,29 +33,34 @@
 import LoginService from '../LoginService'; 
 
 export default {
-  name: 'Login',
-  props: {
-    msg: String
-  }, 
-  data(){
-    return{
-      email: '',
-      password: '',
+    name: 'Register', 
+    props: {
+        msg: String
+    }, 
+    data(){
+        return {
+            email: '',
+            password: '', 
+            c_password: '', 
+            first_name: '', 
+            last_name: ''
+        }
+    }, 
+    methods: {
+        async registerUser(e){
+            e.preventDefault(); 
+            try{
+                let message = await LoginService.registerUser(this.first_name, this.last_name, this.email, this.c_password, this.password); 
+                alert(message.data.error); 
+            }catch(err){
+                alert('Registration not successful'); 
+                console.log('Registration not successful'); 
+            }
+        }
     }
-  }, 
-  methods: {
-    async loginUser(event){
-      event.preventDefault(); 
-      try{
-        let message = await LoginService.loginUser(this.email, this.password); 
-        console.log(message.status); 
-      }catch(err){
-        console.log('bad login'); 
-      }
-    }
-  }
 }
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

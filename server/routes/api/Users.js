@@ -38,6 +38,7 @@ users.post("/register", (req, res) => {
             })
         }
         else {
+            res.status(400); 
             res.json({error: 'User already exists'})
         }
     })
