@@ -1,8 +1,9 @@
 <template>
 <div>
-    <ul class="list-group">
+    <ul class="list-group" v-if="producers.length > 0">
         <li v-for="(v,i) in producers" :key="i"  class="list-group-item">{{ v.producerName }} <a :href="v.wikiPage">wikipedia</a></li>
     </ul>
+    <div v-else>No results found...</div>
 </div>
     
 </template>
