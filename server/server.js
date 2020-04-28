@@ -18,6 +18,8 @@ app.use('/api/posts', posts);  // tell the server to look in our posts.js file f
 
 const users = require('./routes/api/Users');
 app.use('/api/users', users);
+const producers = require('./routes/api/producers'); 
+app.use('/api/producers', producers); 
 
 const port = process.env.PORT || 8080;  // use whatever port the environment wants or 8088
 

@@ -1,19 +1,30 @@
 <template>
 <div>
     <ul class="list-group">
-        <li v-for="i in 1000" :key="i"  class="list-group-item">{{ i }} An instance where a producer would be put</li>
+        <li v-for="(v,i) in producers" :key="i"  class="list-group-item">{{ v.producerName }} <a :href="v.wikiPage">wikipedia</a></li>
     </ul>
 </div>
     
 </template>
 
 <script>
+import ProducerService from '../ProducerService'; 
+
 export default {
    name: 'ListView' , 
    data() {
        return {
-           items : [1, 2, 3]
+           producers : []
        }
+   }, 
+   methods:{
+       async getAllProducers(){
+           return await ProducerService.getAllProducers(); 
+       }
+   }, 
+   created: function() {
+       this.getAllProducers().then((result) => this.producers = result.data)
+             .catch( (err) => console.log(err + 'error getting all producers')); 
    }
 }
 </script>
