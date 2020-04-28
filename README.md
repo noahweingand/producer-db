@@ -16,6 +16,9 @@ npm run serve
 cd server
 node server.js
 ```
+### General info
+Node version: v12.16.2
+Had to run npm install in client and server - Noah
 ### To do
 ~ Make client directory to serve site statically
 ~ sanitize inputs
