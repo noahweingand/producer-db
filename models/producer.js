@@ -41,5 +41,8 @@ module.exports = db.sequelize.define(
         email: {
             type: Sequelize.STRING
         }
+    }, 
+    {
+        freezeTableName: true
     }
 )
