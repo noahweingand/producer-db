@@ -34,7 +34,7 @@ const router = new VueRouter({
       component: Register
     }, 
     {
-      path: '/ProducerSongs', 
+      path: '/ProducerSongs/:producer', 
       name: 'ProducerSongs', 
       component: ProducerSongs,
       props: true

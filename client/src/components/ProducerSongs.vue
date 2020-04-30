@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1> {{ producer }} </h1>
+  <h1> {{ this.producer }} </h1>
   <b-table v-if="songs.length > 0" striped hover :items="songs" :fields="fields"></b-table>
 </div>
 </template>
@@ -10,14 +10,15 @@ import ProducerService from '../ProducerService';
 
 export default {
     name: 'ProducerSongs',
-    props: ['producer'],
     data(){
         return {
             fields: [], 
-            songs: []
+            songs: [], 
+            producer: this.$route.params.producer
         }
     }, 
     created: function(){
+        console.log(this.$route.params);
         this.getSongs().then((result) =>{
             this.songs = result.data[0]
             for(var prop in this.songs[0]){
@@ -27,7 +28,7 @@ export default {
     }, 
     methods: {
         async getSongs(){
-            return await ProducerService.getSongsBy(this.producer)
+            return await ProducerService.getSongsBy(this.producer);
         }
     }
 }

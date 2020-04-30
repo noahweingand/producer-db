@@ -5,7 +5,7 @@
             <a :href="data.value">Wikipedia</a>
         </template>
         <template v-slot:cell(song-link)="data">
-            <router-link :to="{name: 'ProducerSongs', params: { producer: data.item.producerName }}">Credits</router-link>
+            <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
         </template>
     </b-table>
 </div>

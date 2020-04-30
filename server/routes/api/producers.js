@@ -13,7 +13,7 @@ producers.post('/', async (req, res) =>  {
 
 producers.post('/GetSongs', async (req, res) => {
     Producer.sequelize.query(
-    `SELECT producerName, stageName, title from credits c JOIN producer p ON(c.producerID = p.ID) 
+    `SELECT producerName as Producer, stageName as Artist, title, album, length from credits c JOIN producer p ON(c.producerID = p.ID) 
     JOIN song s ON(s.ID = c.songID) JOIN artist a ON(c.artistID = a.ID) WHERE producerName = ?`, 
     {
         replacements: req.body.params
