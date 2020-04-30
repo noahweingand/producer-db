@@ -1,14 +1,29 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <Navbar @child-search="showSearch"></Navbar>
+    <p>{{this.searchString}}</p> <!-- For testing, we don't need this p tag -->
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 
 <script>
-
+import Navbar from './components/Navbar'; 
 
 export default {
-  name: 'App'
+  name: 'App', 
+  components: {
+    Navbar
+  }, 
+  data(){
+    return {
+      searchString: ''
+    }
+  }, 
+  methods: {
+    showSearch: function(params) {
+        this.searchString = params;
+    }
+  }
 }
 </script>
 

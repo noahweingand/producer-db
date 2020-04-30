@@ -10,6 +10,7 @@ import Login from './components/Login.vue';
 import Register from './components/Register.vue'; 
 import Home from './components/Home.vue'; 
 import ProducerSongs from './components/ProducerSongs.vue'; 
+import SearchListView from './components/SearchListView.vue'; 
 
 Vue.use(BootstrapVue); 
 Vue.use(VueRouter); 
@@ -38,13 +39,24 @@ const router = new VueRouter({
       name: 'ProducerSongs', 
       component: ProducerSongs,
       props: true
+    }, 
+    {
+      path: '/SearchListView/:query', 
+      name: 'SearchListView', 
+      component: SearchListView, 
+      props: true
+    }, 
+    {
+      path: '/SearchListView',
+      name: 'EmptySearch', 
+      component: SearchListView
     }
   ]
 })
 
 new Vue({
-  router, 
   render: h => h(App),
+  router
 }).$mount('#app'); 
 
 

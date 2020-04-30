@@ -1,6 +1,8 @@
 <template>
 <div>
-    <h2>Search Results:</h2>
+    <h2 class="mt-5 pt-5" v-if="!this.searchQuery || this.searchQuery.trim() === ''">Please use a search parameter</h2>
+    <div v-else>
+    <h2 class="mt-5 pt-5">Search Results for: {{ this.searchQuery }}</h2>
     <b-table v-if="producers.length > 0" striped hover :items="producers" :fields="fields">
         <template v-slot:cell(wikiPage)="data">
             <a :href="data.value">Wikipedia</a>
@@ -9,6 +11,7 @@
             <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
         </template>
     </b-table>
+    </div>
 </div>
     
 </template>
@@ -18,9 +21,10 @@ import ProducerService from '../ProducerService';
 
 export default {
    name: 'SearchListView' , 
-   props: { searchQuery: String }, //passed in search query
+   //passed in search query
    data() {
        return {
+           searchQuery: this.$route.params.query.trim(), 
            fields: [],
            producers : []
        }
@@ -31,6 +35,7 @@ export default {
        }
    }, 
    created: function() {
+       this.searchQuery = this.$route.params.query
        this.getAllProducers().then((result) => {
            this.producers = result.data; 
            for(var prop in this.producers[0]){

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1> {{ this.producer }} </h1>
+    <h1 class="bd-title pt-5 mt-5 mb-5"> All credits by: {{ this.producer }} </h1>
   <b-table v-if="songs.length > 0" striped hover :items="songs" :fields="fields"></b-table>
 </div>
 </template>
