@@ -3,7 +3,7 @@
     <h2>Search Results:</h2>
     <b-table v-if="producers.length > 0" striped hover :items="producers" :fields="fields">
         <template v-slot:cell(wikiPage)="data">
-            <a :href="data.value">Wikipedia2</a>
+            <a :href="data.value">Wikipedia</a>
         </template>
         <template v-slot:cell(song-link)="data">
             <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
@@ -18,6 +18,7 @@ import ProducerService from '../ProducerService';
 
 export default {
    name: 'SearchListView' , 
+   props: { searchQuery: String }, //passed in search query
    data() {
        return {
            fields: [],

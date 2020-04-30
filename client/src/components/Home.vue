@@ -4,7 +4,7 @@
         <h1 class="mb-5 mt-5">Welcome to the Producer Database!</h1>
         <p>{{this.searchString}}</p> <!-- For testing, we don't need this p tag -->
         <HomeListView v-if="searchString.length == 0"></HomeListView>
-        <SearchListView v-else></SearchListView> <!-- This is only shows when something's different? -->
+        <SearchListView :searchQuery="searchString" v-else></SearchListView> <!-- This is only shows when something's different? -->
     </div>
 </template>
 <script>
@@ -27,10 +27,6 @@ export default {
         //sets the search to the input it is listening on
         showSearch: function(params) {
             this.searchString = params;
-        },
-        getSearchLength: function() {
-            var length = this.searchString.length;
-            return length;
         }
     }
 }

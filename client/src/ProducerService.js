@@ -9,6 +9,13 @@ class ProducerService {
         }); 
     }
 
+    //need to select...LIKE '%query%' here
+    static getAllProducersLike(params){
+        return axios.post(url, {
+            params
+        });
+    }
+
     static getSongsBy(producer){
         return axios.post(url+'/GetSongs', {
             params : [producer]
