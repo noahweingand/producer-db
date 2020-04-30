@@ -16,7 +16,7 @@
 import ProducerService from '../ProducerService'; 
 
 export default {
-   name: 'ListView' , 
+   name: 'HomeListView' , 
    data() {
        return {
            fields: [],
