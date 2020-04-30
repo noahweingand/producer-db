@@ -8,6 +8,12 @@ class ProducerService {
             params
         }); 
     }
+
+    static getSongsBy(producer){
+        return axios.post(url+'/GetSongs', {
+            params : [producer]
+        });
+    }
 }
 
 export default ProducerService; 

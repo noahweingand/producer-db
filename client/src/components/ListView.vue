@@ -4,8 +4,10 @@
         <template v-slot:cell(wikiPage)="data">
             <a :href="data.value">Wikipedia</a>
         </template>
+        <template v-slot:cell(song-link)="data">
+            <router-link :to="{name: 'ProducerSongs', params: { producer: data.item.producerName }}">Credits</router-link>
+        </template>
     </b-table>
-    <div v-else>No results found...</div>
 </div>
     
 </template>
@@ -29,10 +31,10 @@ export default {
    created: function() {
        this.getAllProducers().then((result) => {
            this.producers = result.data; 
-           console.log(this.producers);
            for(var prop in this.producers[0]){
                this.fields.push(prop); 
            }
+           this.fields.push('song-link')
         }).catch( (err) => console.log(err)); 
    }
 }

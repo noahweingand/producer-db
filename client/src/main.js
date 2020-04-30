@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Login from './components/Login.vue'; 
 import Register from './components/Register.vue'; 
 import Home from './components/Home.vue'; 
+import ProducerSongs from './components/ProducerSongs.vue'; 
 
 Vue.use(BootstrapVue); 
 Vue.use(VueRouter); 
@@ -31,6 +32,12 @@ const router = new VueRouter({
       path: '/Register', 
       name: 'Register', 
       component: Register
+    }, 
+    {
+      path: '/ProducerSongs', 
+      name: 'ProducerSongs', 
+      component: ProducerSongs,
+      props: true
     }
   ]
 })
