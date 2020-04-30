@@ -20,9 +20,9 @@
             </ul>
             <form class="form-inline my-2 my-lg-0" @submit="letsSee">
             <b-dropdown split split-variant="outline-success" :text="dropdown" class="mr-2" variant="success">
-                <b-dropdown-item @click="dropListen">All</b-dropdown-item>
-                <b-dropdown-item @click="dropListen">Artists</b-dropdown-item>
-                <b-dropdown-item @click="dropListen">Producers</b-dropdown-item>
+                <b-dropdown-item variant="success" @click="dropListen">All</b-dropdown-item>
+                <b-dropdown-item variant="success" @click="dropListen">Artists</b-dropdown-item>
+                <b-dropdown-item variant="success" @click="dropListen">Producers</b-dropdown-item>
             </b-dropdown>
             <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">Search</button>
