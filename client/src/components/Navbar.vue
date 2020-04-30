@@ -29,9 +29,9 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" @submit="letsSee">
+            <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Submit">Search</button>
             </form>
             <router-link to="/Login" class="btn ml-sm-2 btn-primary">Login</router-link>
         </div>
@@ -41,7 +41,24 @@
 
 <script>
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    data() {
+        return {
+            search: ""
+        }
+    },
+    methods: {
+        letsSee:function(e) {
+            alert(this.search) //for testing
+            e.preventDefault();
+        }
+    },
+    watch: {
+        //watches input for user's search
+        search: function() {
+            this.$emit("child-search", this.search); //passes back up to parent (Home)
+        }
+    }
 }
 </script>
 

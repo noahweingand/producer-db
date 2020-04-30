@@ -20,10 +20,14 @@ node server.js
 Node version: v12.16.2
 Had to run npm install in client and server - Noah
 ### To do
-~ Make client directory to serve site statically
-~ sanitize inputs
-~ user login / registration
-~ more but idk rn
+* sanitize inputs
+* SEARCH
+    * all search. Then a search for producer, artist, song, tag, tools
+    * conditionally render list views at home
+* User validation?
+    * users need to be logged in to make post
+* Create, Update, Delete
+    * need user to be logged in to do this
 
 ### Links for developing
 For making get/post requests thru curl: https://gist.github.com/ungoldman/11282441
