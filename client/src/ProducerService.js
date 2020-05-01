@@ -10,9 +10,10 @@ class ProducerService {
     }
 
     //need to select...LIKE '%query%' here
-    static getAllProducersLike(params){
-        return axios.post(url, {
-            params
+    static getAllProducersLike(query){
+        console.log(query)
+        return axios.post(url + '/searchProducers', {
+            query : [query]
         });
     }
 

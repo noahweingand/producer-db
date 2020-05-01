@@ -30,14 +30,15 @@ export default {
        }
    }, 
    methods:{
-       async getAllProducers(){
-           return await ProducerService.getAllProducers(['producerName', 'wikiPage']); 
+       async getAllProducersLike(){
+           return await ProducerService.getAllProducersLike('%'+this.searchQuery+'%'); 
        }
    }, 
    created: function() {
        this.searchQuery = this.$route.params.query
-       this.getAllProducers().then((result) => {
-           this.producers = result.data; 
+       this.getAllProducersLike(this.searchQuery).then((result) => {
+           console.log(result)
+           this.producers = result.data[0]; 
            for(var prop in this.producers[0]){
                this.fields.push(prop); 
            }
