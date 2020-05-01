@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark bd-navbar">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark bd-navbar" :key="checkLoggedIn">
         <a class="navbar-brand" href="/">Producer-DB</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,8 @@
             <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <router-link :to="{path : '/SearchListView/' + this.dropdown + '/'+ this.search}" class="btn btn-outline-success my-2 my-sm-0" tag="button" type="submit" value="Submit">Search</router-link>
             </form>
-            <router-link to="/Login" class="btn ml-sm-2 btn-primary">Login</router-link>
+            <router-link v-if="!this.checkLoggedIn" to="/Login" class="btn ml-sm-2 btn-primary">Login</router-link>
+            <button v-else @click="this.logout" class="btn ml-sm-2 btn-danger">Logout</button>
         </div>
         </nav>
     </div>
@@ -30,6 +31,9 @@
 <script>
 export default {
     name: 'Navbar',
+    props: {
+        loggedIn: Boolean
+    }, 
     data() {
         return {
             search: "", 
@@ -39,7 +43,17 @@ export default {
     methods: {
         dropListen: function(e){
             this.dropdown = e.srcElement.innerHTML; 
+        }, 
+        logout: function(){
+            localStorage.removeItem('jwt'); 
+            this.$emit('authenticated', false); 
+            this.$router.go('/'); 
         }
+    }, 
+    computed: {
+        checkLoggedIn: function(){
+            return this.loggedIn; 
+        }, 
     }
 }
 </script>

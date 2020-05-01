@@ -32,7 +32,7 @@ export default {
    }, 
    methods:{
        async getAllProducersLike(){
-           return await ProducerService.getAllProducersLike('%'+this.searchQuery+'%'); 
+           return await ProducerService.getAllProducersLike('%'+this.searchQuery+'%', localStorage.getItem('jwt')); 
        }
    }, 
    created: function() {

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Navbar @child-search="showSearch"></Navbar>
+    <Navbar @child-search="showSearch" @authenticated="setAuthenticated" v-bind:loggedIn="loggedIn"></Navbar>
     <p>{{this.searchString}}</p> <!-- For testing, we don't need this p tag -->
-    <router-view :key="$route.fullPath"></router-view>
+    <router-view :key="$route.fullPath" @authenticated="setAuthenticated"></router-view>
   </div>
 </template>
 
@@ -16,13 +16,26 @@ export default {
   }, 
   data(){
     return {
-      searchString: ''
+      searchString: '', 
+      loggedIn: false
     }
   }, 
   methods: {
     showSearch: function(params) {
         this.searchString = params;
+    },
+    setAuthenticated: function(status){
+      this.loggedIn = status; 
+    } 
+  }, 
+  computed: {
+    checkLoggedIn: function(){
+      if(localStorage.getItem('jwt')) return true; 
+      else return false; 
     }
+  }, 
+  created() {
+    this.loggedIn = this.checkLoggedIn
   }
 }
 </script>

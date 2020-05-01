@@ -25,7 +25,7 @@ export default {
    }, 
    methods:{
        async getAllProducers(){
-           return await ProducerService.getAllProducers(['producerName', 'wikiPage']); 
+           return await ProducerService.getAllProducers(['producerName', 'wikiPage'], localStorage.getItem('jwt')); 
        }
    }, 
    created: function() {

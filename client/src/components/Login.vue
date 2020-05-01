@@ -45,8 +45,10 @@ export default {
     async loginUser(event){
       event.preventDefault(); 
       try{
-        await LoginService.loginUser(this.email, this.password); 
-        this.$router.push('/');
+        let message = await LoginService.loginUser(this.email, this.password); 
+        localStorage.setItem('jwt', message.data);
+        this.$emit('authenticated', true);  
+        this.$router.push({ name: 'Home' });
       }catch(err){
         console.log(err);
         console.log('bad login'); 

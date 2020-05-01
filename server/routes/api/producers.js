@@ -15,7 +15,7 @@ producers.post('/searchProducers', async(req, res) => {
     Producer.sequelize.query("SELECT producerName, wikiPage FROM producer WHERE producerName LIKE ?", 
     {
         replacements: req.body.query
-    }).then( rows => {console.log(req.body.query); res.send(rows)}).catch(err => res.send(err)); 
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
 producers.post('/GetSongs', async (req, res) => {

@@ -3,24 +3,25 @@ const { secret } = require('./secret');
 
 let checkToken = (req, res, next) => {
     let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
-    if (token.startsWith('Bearer ')) {
-      // Remove Bearer from string
-      token = token.slice(7, token.length);
-    }
+
+    console.log(req.body); 
   
     if (token) {
-      jwt.verify(token, config.secret, (err, decoded) => {
+      jwt.verify(token, secret, (err, decoded) => {
         if (err) {
+          console.log(token); 
+          console.log('token is not valid'); 
           return res.json({
             success: false,
             message: 'Token is not valid'
           });
         } else {
-          req.decoded = decoded;
+          req.body.userID = decoded;
           next();
         }
       });
     } else {
+      console.log('auth token is not supplied'); 
       return res.json({
         success: false,
         message: 'Auth token is not supplied'
