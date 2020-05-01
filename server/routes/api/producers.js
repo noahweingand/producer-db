@@ -18,6 +18,13 @@ producers.post('/searchProducers', async(req, res) => {
     }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
+producers.post('/searchArtists', async(req, res) => {
+    Producer.sequelize.query("SELECT stageName, wikiPage FROM artist WHERE stageName LIKE ?", 
+    {
+        replacements: req.body.query
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
 producers.post('/GetSongs', async (req, res) => {
     Producer.sequelize.query(
     `SELECT producerName as Producer, stageName as Artist, title, album, length from credits c JOIN producer p ON(c.producerID = p.ID) 

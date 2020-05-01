@@ -26,6 +26,16 @@ class ProducerService {
         });
     }
 
+    static getAllArtistsLike(query, jwt){
+        return axios.post(url + '/searchArtists', {
+            query : [query]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static getSongsBy(producer, jwt){
         return axios.post(url+'/GetSongs', {
             params : [producer]
