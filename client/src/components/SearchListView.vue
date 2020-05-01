@@ -36,8 +36,8 @@ export default {
        }
    }, 
    created: function() {
-       this.searchQuery = this.$route.params.query
-       console.log(this.searchCategory)
+       this.searchQuery = this.$route.params.query;
+       this.searchCategory = this.$route.params.category;
        this.getAllProducersLike(this.searchQuery).then((result) => {
            this.producers = result.data[0]; 
            for(var prop in this.producers[0]){
