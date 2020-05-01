@@ -41,7 +41,7 @@ const router = new VueRouter({
       props: true
     }, 
     {
-      path: '/SearchListView/:query', 
+      path: '/SearchListView/:category/:query', 
       name: 'SearchListView', 
       component: SearchListView, 
       props: true

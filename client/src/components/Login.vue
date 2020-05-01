@@ -45,11 +45,8 @@ export default {
     async loginUser(event){
       event.preventDefault(); 
       try{
-        let message = await LoginService.loginUser(this.email, this.password); 
-
-        localStorage.setItem('user', JSON.stringify(message)); 
-        console.log(localStorage); 
-        
+        await LoginService.loginUser(this.email, this.password); 
+        this.$router.push('/');
       }catch(err){
         console.log(err);
         console.log('bad login'); 
@@ -89,8 +86,6 @@ h2 {
   margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
-
-
 
 /* STRUCTURE */
 

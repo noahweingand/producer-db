@@ -19,7 +19,7 @@
                 <b-dropdown-item variant="success" @click="dropListen">Producers</b-dropdown-item>
             </b-dropdown>
             <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <router-link :to="'/SearchListView/' + this.search" class="btn btn-outline-success my-2 my-sm-0" tag="button" type="submit" value="Submit">Search</router-link>
+            <router-link :to="{path : '/SearchListView/' + this.dropdown + '/'+ this.search}" class="btn btn-outline-success my-2 my-sm-0" tag="button" type="submit" value="Submit">Search</router-link>
             </form>
             <router-link to="/Login" class="btn ml-sm-2 btn-primary">Login</router-link>
         </div>
@@ -33,7 +33,7 @@ export default {
     data() {
         return {
             search: "", 
-            dropdown: "Search By:"
+            dropdown: "All"
         }
     },
     methods: {
