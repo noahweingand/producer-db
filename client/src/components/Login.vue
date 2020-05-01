@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello mt-5 pt-5">
         <div class="wrapper fadeInDown">
       <div id="formContent">
     <!-- Tabs Titles -->
@@ -46,8 +46,12 @@ export default {
       event.preventDefault(); 
       try{
         let message = await LoginService.loginUser(this.email, this.password); 
-        console.log(message); 
+
+        localStorage.setItem('user', JSON.stringify(message)); 
+        console.log(localStorage); 
+        
       }catch(err){
+        console.log(err);
         console.log('bad login'); 
       }
     }

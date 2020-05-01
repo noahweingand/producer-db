@@ -54,6 +54,21 @@ const router = new VueRouter({
   ]
 })
 
+// router.beforeEach((to, from, next) => {
+//   const publicPages = ['/Login', '/Register']; 
+//   const authRequired = !publicPages.includes(to.path); 
+//   const loggedIn = localStorage.getItem('user'); 
+  
+//   console.log(localStorage); 
+//   if(authRequired && !loggedIn){
+//     return next('/Login'); 
+//   }
+
+//   next(); 
+// }); 
+
+// we need to use vuex for the login authentication
+
 new Vue({
   render: h => h(App),
   router

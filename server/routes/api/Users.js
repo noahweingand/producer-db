@@ -3,11 +3,12 @@ const users = express.Router()
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+const { secret } = require('../../authentication/secret'); 
 
 const User = require("../../../models/User")
 users.use(cors())
 
-process.env.SECRET_KEY = 'secret'
+process.env.SECRET_KEY = secret; 
 
 users.post("/register", (req, res) => {
     // need to check if user actually submitted data in each field
@@ -56,7 +57,6 @@ users.post("/login", (req, res) => {
     })
     .then(user => {
         if(user) {
-            console.log(user); 
             if(bcrypt.compareSync(req.body.password, user.password)) {
                 let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
                     expiresIn: 1440

@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello mb-5 mt-5">
         <div class="wrapper fadeInDown">
       <div id="formContent">
     <!-- Tabs Titles -->
