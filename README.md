@@ -40,5 +40,9 @@ Had to run npm install in client and server - Noah
     * Make delete link on producer page
     * Finish important inserts
     * Make sql query to get all information about the producer
+    * Possibly make a trigger or something that won't allow inserts to the users table 
+    * Change the operating test_users table to the actual users table
+    * Make producer name unique 
+    * Clean the registration functionality 
 
 ### Links for developing
