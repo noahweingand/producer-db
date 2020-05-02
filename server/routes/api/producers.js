@@ -2,6 +2,7 @@ const express = require('express');
 const producers = express.Router(); 
 
 const Producer = require('../../../models/producer'); 
+const Artist = require('../../../models/artist'); 
 
 producers.post('/', async (req, res) =>  {
     Producer.findAll({   
@@ -24,14 +25,20 @@ producers.post('/addProducer', async(req, res) => {
     }).then((result) => res.send(result)).catch(err => {
         console.log(err); 
         res.send(err)
-    }); 
-}); 
+    })}); 
+
+producers.post('/getAllArtists', async (req, res) =>  {
+    
+    Artist.findAll({   
+        attributes: req.body.params
+    }).then(rows => { res.send(rows); console.log(rows) }).catch(err => res.send(err)); 
+    });
 
 producers.post('/searchProducers', async(req, res) => {
     Producer.sequelize.query("SELECT producerName, wikiPage FROM producer WHERE producerName LIKE ?", 
     {
         replacements: req.body.query
-    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+    }).then(rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
 producers.post('/searchArtists', async(req, res) => {

@@ -22,7 +22,8 @@ Had to run npm install in client and server - Noah
 ### To do
 * sanitize inputs?
 * SEARCH
-    * all search. Then a search for producer, artist, song, tag, tools
+    * search so far: producer, artist, all
+        * Still need: song, tag, tools
     * conditionally render list views at home
 * User validation?
     * users need to be logged in to make post

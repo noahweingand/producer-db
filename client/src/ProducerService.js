@@ -15,6 +15,18 @@ class ProducerService {
         ); 
     }
 
+    static getAllArtists(params, jwt){
+        return axios.post(url + '/getAllArtists', {
+            params 
+        }, 
+        {
+            headers: {
+                Authorization: jwt
+            }
+        }
+        ); 
+    }
+
     //need to select...LIKE '%query%' here
     static getAllProducersLike(query, jwt){
         return axios.post(url + '/searchProducers', {

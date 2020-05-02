@@ -9,13 +9,13 @@ module.exports = db.sequelize.define(
             primaryKey: true, 
             autoIncrement: true
         }, 
-        stage_name : {
+        stageName : {
             type: Sequelize.STRING
         }, 
-        first_name : {
+        firstName : {
             type: Sequelize.STRING
         }, 
-        last_name : {
+        lastName : {
             type: Sequelize.STRING
         }, 
         dob : {
@@ -27,16 +27,16 @@ module.exports = db.sequelize.define(
         hometown : {
             type: Sequelize.STRING
         }, 
-        wikipage: {
+        wikiPage : {
             type: Sequelize.STRING
         }, 
-        instagram: {
+        instagram : {
             type: Sequelize.STRING
         }, 
-        twitter: {
+        twitter : {
             type: Sequelize.STRING
         }, 
-        email: {
+        email : {
             type: Sequelize.STRING
         }
     }, 
