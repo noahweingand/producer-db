@@ -11,6 +11,7 @@ import Register from './components/Register.vue';
 import Home from './components/Home.vue'; 
 import ProducerSongs from './components/ProducerSongs.vue'; 
 import SearchListView from './components/SearchListView.vue'; 
+import AddProducers from './components/AddProducers.vue'; 
 
 Vue.use(BootstrapVue); 
 Vue.use(VueRouter); 
@@ -50,22 +51,30 @@ const router = new VueRouter({
       path: '/SearchListView',
       name: 'EmptySearch', 
       component: SearchListView
+    }, 
+    {
+      path: '/AddProducers', 
+      name: 'AddProducers', 
+      component: AddProducers 
     }
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/Login', '/Register']; 
-//   const authRequired = !publicPages.includes(to.path); 
-//   const loggedIn = localStorage.getItem('user'); 
-  
-//   console.log(localStorage); 
-//   if(authRequired && !loggedIn){
-//     return next('/Login'); 
-//   }
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/Login', '/Register', '/']; 
+  const authRequired = !publicPages.includes(to.path); 
+  const loggedIn = localStorage.getItem('user'); 
 
-//   next(); 
-// }); 
+  if(authRequired && !loggedIn){
+    return next('/Login'); 
+  }
+
+  if(loggedIn && (to.path == '/Register' || to.path == '/Login')){
+    return next('/'); 
+  }
+
+  next(); 
+}); 
 
 // we need to use vuex for the login authentication
 

@@ -35,6 +35,16 @@ class ProducerService {
             }
         });
     }
+
+    static insertProducer(obj, jwt){
+        return axios.post(url + '/addProducer', {
+            params: obj
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        }); 
+    }
 }
 
 export default ProducerService; 

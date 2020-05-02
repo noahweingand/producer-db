@@ -47,6 +47,7 @@ export default {
       try{
         let message = await LoginService.loginUser(this.email, this.password); 
         localStorage.setItem('jwt', message.data);
+        localStorage.setItem('user', this.email)
         this.$emit('authenticated', true);  
         this.$router.push({ name: 'Home' });
       }catch(err){

@@ -4,11 +4,27 @@ const producers = express.Router();
 const Producer = require('../../../models/producer'); 
 
 producers.post('/', async (req, res) =>  {
-    console.log(req.body);
     Producer.findAll({   
         attributes: req.body.params
     })
     .then(rows => res.send(rows)).catch(err => res.send(err)); 
+}); 
+
+producers.post('/addProducer', async(req, res) => {
+    info = req.body.params
+    console.log(info); 
+    Producer.create({
+        producerName: info.producerName, 
+        firstName: info.first_name, 
+        lastName: info.last_name, 
+        hometown: info.city + ', ' + info.state, 
+        wikiPage: info.wiki, 
+        instagram: info.instagram, 
+        twitter: info.twitter
+    }).then((result) => res.send(result)).catch(err => {
+        console.log(err); 
+        res.send(err)
+    }); 
 }); 
 
 producers.post('/searchProducers', async(req, res) => {

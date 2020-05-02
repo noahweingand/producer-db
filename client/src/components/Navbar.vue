@@ -9,7 +9,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <b-dropdown split split-variant="outline-success" text="Add" class="ml-2" variant="success">
+                    <router-link :to="{ path : '/AddProducers'}" tag="b-dropdown-item" variant="success">Producer</router-link>
+                </b-dropdown>
             </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -46,6 +48,7 @@ export default {
         }, 
         logout: function(){
             localStorage.removeItem('jwt'); 
+            localStorage.removeItem('user');
             this.$emit('authenticated', false); 
             this.$router.go('/'); 
         }
