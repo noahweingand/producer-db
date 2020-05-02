@@ -1,8 +1,12 @@
 <template>
 <div>
-    <div v-if="songs.length > 0">
-        <h1 class="bd-title pt-5 mt-5 mb-5"> {{ this.producer }} </h1>
-        <b-table striped hover :items="songs" :fields="fields"></b-table>
+    <div v-if="info.length > 0">
+        <h1 class="bd-title pt-5 mt-5 mb-5"> Producer: {{ this.producer }} </h1>
+        <b-table striped hover :items="info" :fields="infoFields">
+        <template v-slot:cell(wikiPage)="data">
+                    <a :href="data.value">Wikipedia</a>
+        </template>
+        </b-table>
     </div>
     <b-alert v-else variant="danger" class="mt-5 pt-5" v-cloak show>No results found...</b-alert>
 </div>
@@ -15,26 +19,27 @@ export default {
     name: 'ProducerProfile',
     data(){
         return {
-            fields: [], 
-            producerInfo: [], 
+            infoFields: [], 
+            info: [], 
             producer: this.$route.params.producer
         }
     }, 
+    methods: {
+        async GetProducerInfo(){
+            return await ProducerService.getProducerInfo(this.producer, localStorage.getItem('jwt'));
+        }
+    },
     created: function(){
-        this.getSongs().then((result) =>{
-            this.songs = result.data[0]
-            for(var prop in this.songs[0]){
-                this.fields.push(prop); 
+        this.GetProducerInfo().then((result) =>{
+            this.info = result.data[0];
+            console.log(this.info[0])
+            for(var prop in this.info[0]){
+                this.infoFields.push(prop); 
             }
         }).catch((err) => {
             console.log(err); 
         }); 
         
-    }, 
-    methods: {
-        async getSongs(){
-            return await ProducerService.getSongsBy(this.producer, localStorage.getItem('jwt'));
-        }
     }
 }
 </script>

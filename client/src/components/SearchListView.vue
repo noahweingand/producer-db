@@ -3,7 +3,10 @@
     <b-alert variant="success" class="mt-5 pt-5" v-if="this.searchQuery === undefined || this.searchQuery.trim() === ''" show>Please use a search parameter</b-alert>
     <section class="bd-content" v-else>
     <b-alert variant="success" class="mt-5 pt-5" show> Search Results for: {{ this.searchQuery }} </b-alert>
-    <b-table v-if="producers.length > 0 && searchCategory === 'All' || searchCategory === 'Producers'" striped hover :items="producers" :fields="prodFields">
+    <b-table v-if="producers.length > 0 && (searchCategory === 'All' || searchCategory === 'Producers')" striped hover :items="producers" :fields="prodFields">
+        <template v-slot:cell(producerName)="data">
+            <router-link :to="'/ProducerProfile/' + data.item.producerName">{{data.value}}</router-link>
+        </template>
         <template v-slot:cell(wikiPage)="data">
             <a :href="data.value">Wikipedia</a>
         </template>
@@ -52,9 +55,10 @@ export default {
        this.searchQuery = this.$route.params.query;
        this.searchCategory = this.$route.params.category;
        this.getAllProducersLike(this.searchQuery).then((result) => {
-           this.producers = result.data[0]; 
+           this.producers = result.data[0];
+           console.log(result);
            for(var prop in this.producers[0]){
-               this.prodFields.push(prop); 
+               this.prodFields.push(prop);
            }
            this.prodFields.push('song-link')
         }).catch( (err) => console.log(err)); 
