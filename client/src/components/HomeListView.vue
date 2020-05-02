@@ -3,6 +3,9 @@
         <b-row>
             <h2>Producers:</h2>
             <b-table v-if="producers.length > 0" striped hover :items="producers" :fields="prodFields">
+                <template v-slot:cell(producerName)="data">
+                    <router-link :to="'/ProducerProfile/' + data.item.producerName">{{data.value}}</router-link>
+                </template>
                 <template v-slot:cell(wikiPage)="data">
                     <a :href="data.value">Wikipedia</a>
                 </template>
