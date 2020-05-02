@@ -10,6 +10,11 @@ users.use(cors())
 
 process.env.SECRET_KEY = secret; 
 
+const checkValidEmail = function(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email); 
+}
+
 users.post("/register", (req, res) => {
     // need to check if user actually submitted data in each field
     const today = new Date().toJSON();
@@ -21,18 +26,35 @@ users.post("/register", (req, res) => {
         created: today
     }
 
+    if(!checkValidEmail(userData.email)){
+        res.json({
+            status: 'Email not valid!', 
+            failed: true
+        }); 
+        return 
+    }else if(userData.password.trim() === ''){
+        res.json({
+            status: 'Please use a password', 
+            failed: true
+        })
+        return 
+    }
+
     User.findOne({
         where: {
             email: req.body.email
         }
     })
     .then(user => {
-        if(!user) {
+        if(!user && userData.password.trim() !== '') {
             bcrypt.hash(req.body.password, 10, (err, hash) => {
                 userData.password = hash
                 User.create(userData)
                     .then(user => {
-                        res.json({status: user.email + ' registered!'})
+                        res.json({
+                            status: user.email + ' registered!', 
+                            failed: false
+                        })
                     })
                     .catch(err => {
                         res.send('error: ' + err)
@@ -40,8 +62,10 @@ users.post("/register", (req, res) => {
             })
         }
         else {
-            res.status(400); 
-            res.json({error: 'User already exists'})
+            res.json({
+                status: 'User already exists', 
+                failed: true
+            })
         }
     })
     .catch(err => {

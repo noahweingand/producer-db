@@ -2,7 +2,7 @@ const Sequelize = require("sequelize")
 const db = require("../server/database/db")
 
 module.exports = db.sequelize.define(
-    'test_users', //change this to users when we're done testing
+    'users', //change this to users when we're done testing
     {
         id: {
             type: Sequelize.INTEGER,
