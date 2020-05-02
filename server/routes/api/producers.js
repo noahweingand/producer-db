@@ -119,7 +119,14 @@ producers.post('/AddSong', async (req, res) => {
 }); 
 
 producers.post('/GetProducerInfo', async(req, res) => {
-    Producer.sequelize.query("SELECT firstName, lastName, dob, hometown, wikiPage, instagram, twitter FROM producer WHERE producerName = ?", 
+    Producer.sequelize.query("SELECT firstName, lastName, getProducerAge(producerName) \"age\", dob \"Date of Birth\", hometown, wikiPage, instagram, twitter FROM producer WHERE producerName = ?", 
+    {
+        replacements: req.body.params
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
+producers.post('/deleteProducer', async(req, res) => {
+    Producer.sequelize.query("DELETE FROM producer WHERE producerName = ?", 
     {
         replacements: req.body.params
     }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 

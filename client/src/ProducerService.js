@@ -57,6 +57,16 @@ class ProducerService {
         });
     }
 
+    static deleteProducer(producer, jwt){
+        return axios.post(url+'/deleteProducer', {
+            params : [producer]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static getSongsBy(producer, jwt){
         return axios.post(url+'/GetSongs', {
             params : [producer]

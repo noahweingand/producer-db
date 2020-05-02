@@ -28,15 +28,13 @@ Had to run npm install in client and server - Noah
     * login form needs to be hit first and then pass state of logged in
 * Clean up DB  
     * Remove email for producers/artists from db? Probably don't need it
+* Add 
+    * router push to home when adding producer or artist
+    * add DOB as field
 * Alex's List of things to do: 
     * Make procedure to insert credit link to songs so that we don't have a wild query on front end
-    * Make producer page - Noah
     * Make delete link on producer page
     * Finish important inserts
-    * Make sql query to get all information about the producer
-    * Possibly make a trigger or something that won't allow inserts to the users table 
-    * Change the operating test_users table to the actual users table
-    * Make producer name unique 
-    * Clean the registration functionality 
+    * Possibly make a trigger or something that won't allow inserts to the users table
 
 ### Links for developing
