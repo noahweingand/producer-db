@@ -26,14 +26,11 @@ Had to run npm install in client and server - Noah
         * Still need: song, tag, tools
 * Login
     * login form needs to be hit first and then pass state of logged in
-* Create, Update, Delete
-    * need user to be logged in to do this
 * Clean up DB  
     * Remove email for producers/artists from db? Probably don't need it
-    * Create import(create and inserts) and drop files from DB for easy cleaning/setting up
 * Alex's List of things to do: 
     * Make procedure to insert credit link to songs so that we don't have a wild query on front end
-    * Make producer page
+    * Make producer page - Noah
     * Make delete link on producer page
     * Finish important inserts
     * Make sql query to get all information about the producer

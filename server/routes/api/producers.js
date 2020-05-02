@@ -49,7 +49,7 @@ producers.post('/getAllArtists', async (req, res) =>  {
     
     Artist.findAll({   
         attributes: req.body.params
-    }).then(rows => { res.send(rows); console.log(rows) }).catch(err => res.send(err)); 
+    }).then(rows => res.send(rows)).catch(err => res.send(err)); 
     });
 
 producers.post('/searchProducers', async(req, res) => {
@@ -73,6 +73,13 @@ producers.post('/GetSongs', async (req, res) => {
     {
         replacements: req.body.params
     }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
+producers.post('/GetProducerInfo', async(req, res) => {
+    Producer.sequelize.query("SELECT firstName, lastName, dob, hometown, wikiPage, instagram, twitter FROM producer WHERE producerName = ?", 
+    {
+        replacements: req.body.params
+    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
 })
 
 module.exports = producers; 
