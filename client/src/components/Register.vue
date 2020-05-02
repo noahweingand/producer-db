@@ -49,11 +49,15 @@ export default {
     methods: {
         async registerUser(e){
             e.preventDefault(); 
+            let message = undefined; 
             try{
-                let message = await LoginService.registerUser(this.first_name, this.last_name, this.email, this.c_password, this.password); 
-                alert(message.data.error); 
+                message = await LoginService.registerUser(this.first_name, this.last_name, this.email, this.c_password, this.password); 
+                alert(message.data.status);
+                if(!message.data.failed){
+                  this.$router.push({ name: 'Login'}); 
+                }
             }catch(err){
-                alert('Registration not successful'); 
+                console.log(err); 
                 console.log('Registration not successful'); 
             }
         }

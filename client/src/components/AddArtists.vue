@@ -8,14 +8,14 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
-        label="Producer Name:"
+        label="Artist Name:"
         label-for="input-1"
       >
         <b-form-input
           id="input-1"
-          v-model="form.producerName"
+          v-model="form.artistName"
           required
-          placeholder="Enter Producer's Stage Name"
+          placeholder="Enter Artists' Stage Name"
         ></b-form-input>
       </b-form-group>
 
@@ -24,7 +24,7 @@
           id="input-2"
           v-model="form.first_name"
           required
-          placeholder="Enter producer's first name"
+          placeholder="Enter artists' first name"
         ></b-form-input>
       </b-form-group>
 
@@ -33,7 +33,7 @@
           id="input-3"
           v-model="form.last_name"
           required
-          placeholder="Enter producer's last name"
+          placeholder="Enter artists' last name"
         ></b-form-input>
       </b-form-group>
 
@@ -42,7 +42,7 @@
           id="input-4"
           v-model="form.state"
           required
-          placeholder="Enter producer's State/Country of origin"
+          placeholder="Enter artists' State/Country of origin"
         ></b-form-input>
       </b-form-group>
 
@@ -51,7 +51,7 @@
           id="input-5"
           v-model="form.city"
           required
-          placeholder="Enter producer's City of origin"
+          placeholder="Enter artists' City of origin"
         ></b-form-input>
       </b-form-group>
     
@@ -67,7 +67,7 @@
         <b-form-input
           id="input-7"
           v-model="form.instagram"
-          placeholder="Producer's instragram name"
+          placeholder="Artists' instragram name"
         ></b-form-input>
       </b-form-group>
 
@@ -75,7 +75,7 @@
         <b-form-input
           id="input-8"
           v-model="form.twitter"
-          placeholder="Producer's Twitter name"
+          placeholder="Artists' Twitter name"
         ></b-form-input>
       </b-form-group>
       
@@ -96,7 +96,7 @@ import ProducerService from '../ProducerService';
     data() {
       return {
         form: {
-          producerName: '',
+          artistName: '',
           first_name: '',
           last_name: '',
           state: '',
@@ -109,10 +109,14 @@ import ProducerService from '../ProducerService';
       }
     },
     methods: {
-      onSubmit(evt) {
+      async onSubmit(evt) {
         evt.preventDefault()
-        ProducerService.insertProducer(this.form, localStorage.getItem('jwt'))
-        alert(JSON.stringify(this.form))
+        try{
+          await ProducerService.insertArtist(this.form, localStorage.getItem('jwt'))
+          alert('Insert successful!'); 
+        }catch(er){
+          alert('Insert not successful')
+        }
       },
       onReset(evt) {
         evt.preventDefault()

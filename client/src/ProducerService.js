@@ -67,6 +67,17 @@ class ProducerService {
             }
         }); 
     }
+
+    static insertArtist(obj, jwt){
+        return axios.post(url +'/addArtist', {
+            params: obj
+        }, 
+        {
+            headers:{
+                Authorization: jwt
+            } 
+        })
+    }
 }
 
 export default ProducerService; 
