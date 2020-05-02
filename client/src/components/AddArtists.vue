@@ -121,8 +121,7 @@ import ProducerService from '../ProducerService';
       onReset(evt) {
         evt.preventDefault()
         // Reset our form values
-        this.form.producerName = ''
-        this.form.city = ''
+        this.form.artistName = ''
         this.form.first_name = ''
         this.form.twitter = ''
         this.form.last_name = ''

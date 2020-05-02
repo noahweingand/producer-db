@@ -77,6 +77,16 @@ class ProducerService {
             } 
         })
     }
+
+    static addSong(obj, jwt){
+        return axios.post(url + '/AddSong', {
+            params: obj
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        })
+    }
 }
 
 export default ProducerService; 

@@ -89,14 +89,30 @@ CREATE TABLE admins(
 	location	    varchar(50),
 	PRIMARY KEY (ID));
 
-CREATE TABLE credits(
-	producerID	int,
-	artistID	int,
-	songID		int,
-	PRIMARY KEY (producerID, artistID, songID),
-	FOREIGN KEY (producerID) REFERENCES producer(ID),
-	FOREIGN KEY (artistID) REFERENCES artist(ID),
-	FOREIGN KEY (songID) REFERENCES song(ID));
+-- CREATE TABLE credits(
+-- 	producerID	int,
+-- 	artistID	int,
+-- 	songID		int,
+-- 	PRIMARY KEY (producerID, artistID, songID),
+-- 	FOREIGN KEY (producerID) REFERENCES producer(ID),
+-- 	FOREIGN KEY (artistID) REFERENCES artist(ID),
+-- 	FOREIGN KEY (songID) REFERENCES song(ID));
+
+CREATE TABLE producerCredits (
+	producerID int, 
+	songID 	int, 
+	PRIMARY KEY (producerID, songID), 
+	FOREIGN KEY (producerID) REFERENCES producer(ID), 
+	FOREIGN KEY (songID) REFERENCES song(ID)
+); 
+
+CREATE TABLE artistCredits (
+	artistID int, 
+	songID 	int, 
+	PRIMARY KEY (artistID, songID), 
+	FOREIGN KEY (artistID) REFERENCES artist(ID), 
+	FOREIGN KEY (songID) REFERENCES song(ID)
+); 
 
 CREATE TABLE usesDaw(
 	dawID		int,

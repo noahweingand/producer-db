@@ -14,6 +14,7 @@ import ProducerProfile from './components/ProducerProfile.vue';
 import SearchListView from './components/SearchListView.vue'; 
 import AddProducers from './components/AddProducers.vue'; 
 import AddArtists from './components/AddArtists.vue'; 
+import AddSong from './components/AddSong.vue'; 
 
 Vue.use(BootstrapVue); 
 Vue.use(VueRouter); 
@@ -69,6 +70,11 @@ const router = new VueRouter({
       path: '/AddArtists', 
       name: 'AddArtists', 
       component: AddArtists
+    }, 
+    {
+      path: '/AddSong', 
+      name: 'AddSong', 
+      component: AddSong
     }
   ]
 })
