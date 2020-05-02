@@ -1,8 +1,11 @@
 <template>
-    <div>
+    <div v-if="this.loggedIn">
         <h1 class="mb-5 mt-5 pt-5">Welcome to the Producer Database!</h1>
         <p>{{this.searchString}}</p> <!-- For testing, we don't need this p tag -->
         <HomeListView></HomeListView>
+    </div>
+    <div v-else>
+        <h1 class="mb-5 mt-5 pt-5">Login to view content</h1>
     </div>
 </template>
 <script>
@@ -15,7 +18,8 @@ export default {
     },
     data() {
         return {
-            searchString: ""
+            searchString: "", 
+            loggedIn: true, 
         }
     },
     methods: {
@@ -23,6 +27,10 @@ export default {
         showSearch: function(params) {
             this.searchString = params;
         }
+    }, 
+    created() {
+        if(localStorage.getItem('jwt')) this.loggedIn = true; 
+        else this.loggedIn = false; 
     }
 }
 </script>

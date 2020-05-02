@@ -11,6 +11,7 @@
             <li class="nav-item">
                 <b-dropdown split split-variant="outline-success" text="Add" class="ml-2" variant="success">
                     <router-link :to="{ path : '/AddProducers'}" tag="b-dropdown-item" variant="success">Producer</router-link>
+                    <router-link :to="{ path: '/AddArtists'}" tag="b-dropdown-item" variant="success">Artist</router-link>
                 </b-dropdown>
             </li>
             </ul>

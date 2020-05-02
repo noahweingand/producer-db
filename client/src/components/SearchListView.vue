@@ -1,6 +1,6 @@
 <template>
 <div>
-    <b-alert variant="success" class="mt-5 pt-5" v-if="!this.searchQuery || this.searchQuery.trim() === ''" show>Please use a search parameter</b-alert>
+    <b-alert variant="success" class="mt-5 pt-5" v-if="this.searchQuery === undefined || this.searchQuery.trim() === ''" show>Please use a search parameter</b-alert>
     <section class="bd-content" v-else>
     <b-alert variant="success" class="mt-5 pt-5" show> Search Results for: {{ this.searchQuery }} </b-alert>
     <b-table v-if="producers.length > 0 && searchCategory === 'All' || searchCategory === 'Producers'" striped hover :items="producers" :fields="prodFields">
