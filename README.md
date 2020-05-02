@@ -24,13 +24,10 @@ Had to run npm install in client and server - Noah
 * SEARCH
     * search so far: producer, artist, all
         * Still need: song, tag, tools
-    * conditionally render list views at home
-* User validation?
-    * users need to be logged in to make post
+* Login
     * login form needs to be hit first and then pass state of logged in
 * Create, Update, Delete
     * need user to be logged in to do this
-* Search results
 * Clean up DB  
     * Remove email for producers/artists from db? Probably don't need it
     * Create import(create and inserts) and drop files from DB for easy cleaning/setting up

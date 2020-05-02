@@ -27,7 +27,6 @@ class ProducerService {
         ); 
     }
 
-    //need to select...LIKE '%query%' here
     static getAllProducersLike(query, jwt){
         return axios.post(url + '/searchProducers', {
             query : [query]

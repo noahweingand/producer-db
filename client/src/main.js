@@ -10,6 +10,7 @@ import Login from './components/Login.vue';
 import Register from './components/Register.vue'; 
 import Home from './components/Home.vue'; 
 import ProducerSongs from './components/ProducerSongs.vue'; 
+import ProducerProfile from './components/ProducerProfile.vue';
 import SearchListView from './components/SearchListView.vue'; 
 import AddProducers from './components/AddProducers.vue'; 
 import AddArtists from './components/AddArtists.vue'; 
@@ -35,7 +36,13 @@ const router = new VueRouter({
       path: '/Register', 
       name: 'Register', 
       component: Register
-    }, 
+    },
+    {
+      path: '/ProducerProfile/:producer',
+      name: 'ProducerProfile',
+      component: ProducerProfile,
+      props: true
+    },
     {
       path: '/ProducerSongs/:producer', 
       name: 'ProducerSongs', 
