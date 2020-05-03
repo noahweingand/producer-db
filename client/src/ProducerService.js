@@ -87,6 +87,16 @@ class ProducerService {
         });
     }
 
+    static getProducerTags(producer, jwt){
+        return axios.post(url+'/GetProducerTags', {
+            params : [producer]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static deleteProducer(producer, jwt){
         return axios.post(url+'/deleteProducer', {
             params : [producer]

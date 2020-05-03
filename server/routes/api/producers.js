@@ -146,6 +146,13 @@ producers.post('/GetProducerHardware', async(req, res) => {
     }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
+producers.post('/GetProducerTags', async(req, res) => {
+    Producer.sequelize.query("SELECT t1.name, t1.sound FROM producer p JOIN hasTag t ON(producerID = p.ID) JOIN tag t1 ON(tagID = t1.ID) WHERE producerName = ?",
+    {
+        replacements: req.body.params
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
 producers.post('/deleteProducer', async(req, res) => {
     Producer.sequelize.query("DELETE FROM producer WHERE producerName = ?", 
     {
