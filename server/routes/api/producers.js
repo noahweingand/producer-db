@@ -168,6 +168,13 @@ producers.post('/AddVst', async(req, res) => {
     }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
 })
 
+producers.post('/AddHardware', async(req, res) => {
+    Producer.sequelize.query("CALL addLinkHardware(?, ?, ?)",
+    {
+        replacements: req.body.params
+    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
+})
+
 producers.post('/deleteProducer', async(req, res) => {
     const admin = req.body.userID.admin; 
 
