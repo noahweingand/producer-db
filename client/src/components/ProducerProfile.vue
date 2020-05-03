@@ -1,12 +1,15 @@
 <template>
 <div>
     <div v-if="info.length > 0">
-        <b-button variant="danger">Button</b-button>
         <h1 class="bd-title pt-5 mt-5 mb-5"> Producer: {{ this.producer }} </h1>
         <b-table striped hover :items="info" :fields="infoFields">
         <template v-slot:cell(wikiPage)="data">
                     <a :href="data.value">Wikipedia</a>
         </template>
+        </b-table>
+        <h2>Digital Audio Workshops:</h2>
+        <b-table striped hover :items="daws" :fields="dawFields">
+        
         </b-table>
     </div>
     <b-alert v-else variant="danger" class="mt-5 pt-5" v-cloak show>No results found...</b-alert>
@@ -24,8 +27,10 @@ export default {
     name: 'ProducerProfile',
     data(){
         return {
-            infoFields: [], 
-            info: [], 
+            infoFields: [],
+            dawFields: [],  
+            info: [],
+            daws: [],
             producer: this.$route.params.producer,
             delete: false
         }
@@ -33,6 +38,9 @@ export default {
     methods: {
         async GetProducerInfo(){
             return await ProducerService.getProducerInfo(this.producer, localStorage.getItem('jwt'));
+        },
+        async GetProducerDaws(){
+            return await ProducerService.getProducerDaws(this.producer, localStorage.getItem('jwt'));
         },
         async deleteProducer(){
             return await ProducerService.deleteProducer(this.producer, localStorage.getItem('jwt'));
@@ -47,9 +55,17 @@ export default {
     created: function(){
         this.GetProducerInfo().then((result) =>{
             this.info = result.data[0];
-            console.log(this.info[0])
             for(var prop in this.info[0]){
                 this.infoFields.push(prop); 
+            }
+        }).catch((err) => {
+            console.log(err); 
+        });
+        this.GetProducerDaws().then((result) =>{
+            this.daws = result.data[0];
+            console.log(result.data[0])
+            for(var prop in this.daws[0]){
+                this.dawFields.push(prop); 
             }
         }).catch((err) => {
             console.log(err); 

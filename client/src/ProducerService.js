@@ -57,6 +57,16 @@ class ProducerService {
         });
     }
 
+    static getProducerDaws(producer, jwt){
+        return axios.post(url+'/GetProducerDaws', {
+            params : [producer]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static deleteProducer(producer, jwt){
         return axios.post(url+'/deleteProducer', {
             params : [producer]

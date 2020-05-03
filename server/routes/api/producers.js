@@ -125,6 +125,13 @@ producers.post('/GetProducerInfo', async(req, res) => {
     }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
+producers.post('/GetProducerDaws', async(req, res) => {
+    Producer.sequelize.query("SELECT d1.name, d1.manufacturer FROM producer p JOIN usesDaw d ON(producerID = p.ID) JOIN daw d1 ON(dawID = d1.ID) WHERE producerName = ?",
+    {
+        replacements: req.body.params
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
 producers.post('/deleteProducer', async(req, res) => {
     Producer.sequelize.query("DELETE FROM producer WHERE producerName = ?", 
     {
