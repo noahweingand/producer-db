@@ -58,3 +58,17 @@ BEGIN
     INSERT INTO usesHardware VALUES(v_hardID, v_producerID); 
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE addTag (IN p_producerName VARCHAR(50), IN p_tagName VARCHAR(50), IN p_soundLink VARCHAR(50))
+BEGIN
+    DECLARE v_producerID INT; 
+    DECLARE v_tagID INT; 
+    SELECT p.ID INTO v_producerID FROM producer p WHERE p.producerName = p_producerName; 
+
+    INSERT INTO tag (name, sound) VALUES(p_tagName, p_soundLink); 
+
+    SELECT ID into v_tagID FROM tag t WHERE t.name = p_tagName AND t.sound = p_soundLink; 
+    INSERT INTO hasTag VALUES(v_producerID, v_tagID); 
+END //
+DELIMITER ; 

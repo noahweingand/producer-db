@@ -1,4 +1,5 @@
 <template>
+<b-container fluid="lg">
 <div>
     <b-alert variant="success" class="mt-5 pt-5" v-if="this.searchQuery === undefined || this.searchQuery.trim() === ''" show>Please use a search parameter</b-alert>
     <section class="bd-content" v-else>
@@ -24,6 +25,7 @@
     </b-table>
     </section>
 </div>
+</b-container>
     
 </template>
 

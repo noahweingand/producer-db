@@ -1,4 +1,5 @@
 <template>
+<b-container fluid="lg">
 <div>
     <div v-if="songs.length > 0">
         <h1 class="bd-title pt-5 mt-5 mb-5"> All credits by: {{ this.producer }} </h1>
@@ -6,6 +7,7 @@
     </div>
     <b-alert v-else variant="danger" class="mt-5 pt-5" v-cloak show>No results found...</b-alert>
 </div>
+</b-container>
 </template>
 
 <script>

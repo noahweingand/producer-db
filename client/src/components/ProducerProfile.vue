@@ -1,4 +1,5 @@
 <template>
+<b-container fluid="lg">
 <div>
     <div v-if="info.length > 0">
         <h1 class="bd-title pt-5 mt-5 mb-5"> Producer: {{ this.producer }} </h1>
@@ -56,6 +57,7 @@
         <b-input v-model="addManu"> </b-input>
     </b-modal>
 </div>
+</b-container>
 </template>
 
 <script>
