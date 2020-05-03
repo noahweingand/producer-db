@@ -24,13 +24,12 @@ Had to run npm install in client and server - Noah
 * SEARCH
     * search so far: producer, artist, all
         * Still need: song, tag, tools
-* Login
-    * login form needs to be hit first and then pass state of logged in
 * DB  
     * Remove email for producers/artists from db? Probably don't need it
     * FILL DAT BITCH NO CAP 😂
-* Add 
-    * add DOB as field
+* Login Log Trigger
+* Artist Page
+    * Artist Page
 * Producer Page
     * styling
 * Alex's List of things to do: 
