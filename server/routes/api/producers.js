@@ -27,8 +27,10 @@ producers.post('/addProducer', async(req, res) => {
         wikiPage: info.wiki, 
         instagram: info.instagram, 
         twitter: info.twitter, 
-        dob: info.dob
-    }).then((result) => res.send(result)).catch(err => {
+        dob: info.dob || null 
+    }).then((result) => {
+        res.send(result); 
+    }).catch(err => {
         console.log(err); 
         res.send(err)
     })}); 
@@ -184,8 +186,6 @@ producers.post('/AddTag', async(req, res) => {
 
 producers.post('/deleteProducer', async(req, res) => {
     const admin = req.body.userID.admin; 
-
-    console.log('ADMIN' + admin); 
 
     if(!admin) {
         res.json({
