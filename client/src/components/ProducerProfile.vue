@@ -8,7 +8,15 @@
         </template>
         </b-table>
         <h2>Digital Audio Workshops:</h2>
-        <b-table striped hover :items="daws" :fields="dawFields">
+        <b-table striped hover :items="daws" :fields="toolsFields">
+        
+        </b-table>
+        <h2>Virtual Studio Technologies:</h2>
+        <b-table striped hover :items="vsts" :fields="toolsFields">
+        
+        </b-table>
+        <h2>Hardware:</h2>
+        <b-table striped hover :items="hardware" :fields="toolsFields">
         
         </b-table>
     </div>
@@ -28,9 +36,11 @@ export default {
     data(){
         return {
             infoFields: [],
-            dawFields: [],  
+            toolsFields: [], 
             info: [],
             daws: [],
+            vsts: [],
+            hardware: [],
             producer: this.$route.params.producer,
             delete: false
         }
@@ -41,6 +51,12 @@ export default {
         },
         async GetProducerDaws(){
             return await ProducerService.getProducerDaws(this.producer, localStorage.getItem('jwt'));
+        },
+        async GetProducerVsts(){
+            return await ProducerService.getProducerVsts(this.producer, localStorage.getItem('jwt'));
+        },
+        async GetProducerHardware(){
+            return await ProducerService.getProducerHardware(this.producer, localStorage.getItem('jwt'));
         },
         async deleteProducer(){
             return await ProducerService.deleteProducer(this.producer, localStorage.getItem('jwt'));
@@ -63,10 +79,19 @@ export default {
         });
         this.GetProducerDaws().then((result) =>{
             this.daws = result.data[0];
-            console.log(result.data[0])
             for(var prop in this.daws[0]){
-                this.dawFields.push(prop); 
+                this.toolsFields.push(prop); 
             }
+        }).catch((err) => {
+            console.log(err); 
+        });
+        this.GetProducerVsts().then((result) =>{
+            this.vsts = result.data[0];
+        }).catch((err) => {
+            console.log(err); 
+        });
+        this.GetProducerHardware().then((result) =>{
+            this.hardware = result.data[0];
         }).catch((err) => {
             console.log(err); 
         }); 

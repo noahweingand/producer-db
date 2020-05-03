@@ -67,6 +67,26 @@ class ProducerService {
         });
     }
 
+    static getProducerVsts(producer, jwt){
+        return axios.post(url+'/GetProducerVsts', {
+            params : [producer]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
+    static getProducerHardware(producer, jwt){
+        return axios.post(url+'/GetProducerHardware', {
+            params : [producer]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static deleteProducer(producer, jwt){
         return axios.post(url+'/deleteProducer', {
             params : [producer]
