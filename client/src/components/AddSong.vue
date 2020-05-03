@@ -29,24 +29,24 @@
       </b-form-group>
 
       <b-form-group id="input-group-3" label="Producer(s) Name:" label-for="input-3" description="Producer must already exist in DB">
-        <b-form-input v-for="(v, i) of this.form.producerNames" :key="i"
+        <b-form-select v-for="(v, i) of this.form.producerNames" :key="i" :options="producerOptions"
           id="input-3"
           v-model="form.producerNames[i]"
           required
           placeholder="Enter Producer name"
           class="mt-1"
-        ></b-form-input>
+        ></b-form-select>
       <b-button size="sm" variant="primary" @click="addProducer"  class="mt-2">+</b-button>
       </b-form-group>
 
       <b-form-group id="input-group-4" label="Artist(s) Name:" label-for="input-4" description="Artist must already exist in DB">
-        <b-form-input v-for="(v,i) of this.form.artistNames" :key="i"
+        <b-form-select v-for="(v,i) of this.form.artistNames" :key="i" :options="artistOptions"
           id="input-4"
           v-model="form.artistNames[i]"
           required
           placeholder="Enter Artist Name"
           class="mt-1"
-        ></b-form-input>
+        ></b-form-select>
       <b-button size="sm" variant="primary" @click="addArtist"  class="mt-2">+</b-button>
       </b-form-group>
 
@@ -90,7 +90,9 @@ import ProducerService from '../ProducerService';
           songName: '', 
           genre: ''
         },
-        show: true
+        show: true, 
+        producerOptions : [], 
+        artistOptions : []
       }
     },
     methods: {
@@ -105,6 +107,7 @@ import ProducerService from '../ProducerService';
 
         try{
           await ProducerService.addSong(this.form, localStorage.getItem('jwt'));
+          this.$router.push('/AddSong')
         }catch(err){
           console.log(err); 
         }
@@ -129,7 +132,22 @@ import ProducerService from '../ProducerService';
       }, 
       addArtist(){
           this.form.artistNames.push(''); 
+      }, 
+      async getAllProducers(){
+          return await ProducerService.getAllProducers(['producerName'], localStorage.getItem('jwt')); 
+      },
+      async getAllArtists(){
+          return await ProducerService.getAllArtists(['stageName','wikiPage'], localStorage.getItem('jwt')); 
       }
+    }, 
+    created(){
+      this.getAllProducers().then((result) => {
+        result.data.forEach((el) => this.producerOptions.push(el.producerName)); 
+      }).catch( (err) => console.log(err));
+
+      this.getAllArtists().then( (result) => {
+        result.data.forEach((el) => this.artistOptions.push(el.stageName)); 
+      }).catch( (err) => console.log(err)); 
     }
   }
 </script>

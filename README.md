@@ -38,5 +38,8 @@ Had to run npm install in client and server - Noah
     * Finish important inserts
     * Possibly make a trigger or something that won't allow inserts to the users table
     * Add functionality to update song reference to artist / producer
+    * make on update cascades and on delete cascades
+    * consider adding boolean admin attribute to users table so only admins can delete a producer
+    * consider option if someone wants to add more credits to a specific song
 
 ### Links for developing

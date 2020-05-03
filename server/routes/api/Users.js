@@ -86,7 +86,6 @@ users.post("/login", (req, res) => {
                     expiresIn: 1440
                 })
                 console.log('logged in')
-                console.log(token); 
                 res.send(token); 
             }
         }

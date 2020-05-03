@@ -58,6 +58,7 @@
       <b-form-group id="input-group-6" label="Wikipedia URL" label-for="input-6" description="optional">
         <b-form-input
           id="input-6"
+          type="url"
           v-model="form.wiki"
           placeholder="Wiki URL"
         ></b-form-input>
@@ -77,6 +78,27 @@
           v-model="form.twitter"
           placeholder="Producer's Twitter name"
         ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-9" label="Enter Producer's DOB" label-for="input-9" description="optional">
+      <b-input-group class="mb-3">
+      <b-form-input
+        id="example-input"
+        v-model="form.dob"
+        placeholder="YYYY-MM-DD"
+        autocomplete="off"
+      ></b-form-input>
+      <b-input-group-append>
+        <b-form-datepicker
+          v-model="form.dob"
+          button-only
+          right
+          locale="en-US"
+          aria-controls="example-input"
+          @context="onContext"
+        ></b-form-datepicker>
+      </b-input-group-append>
+    </b-input-group>
       </b-form-group>
       
 
@@ -104,6 +126,7 @@ import ProducerService from '../ProducerService';
           wiki: '',
           instagram: '',
           twitter: '',
+          dob: ''
         },
         show: true
       }
@@ -125,6 +148,7 @@ import ProducerService from '../ProducerService';
         this.form.wiki = ''
         this.form.instagram = ''
         this.form.state = ''
+        this.form.dob = ''
         // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {

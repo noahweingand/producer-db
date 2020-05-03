@@ -26,7 +26,8 @@ producers.post('/addProducer', async(req, res) => {
         hometown: info.city + ', ' + info.state, 
         wikiPage: info.wiki, 
         instagram: info.instagram, 
-        twitter: info.twitter
+        twitter: info.twitter, 
+        dob: info.dob
     }).then((result) => res.send(result)).catch(err => {
         console.log(err); 
         res.send(err)
