@@ -154,6 +154,20 @@ producers.post('/GetProducerTags', async(req, res) => {
     }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
+producers.post('/AddDaw', async(req, res) => {
+    Producer.sequelize.query("CALL addLinkDaw(?, ?, ?)",
+    {
+        replacements: req.body.params
+    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
+})
+
+producers.post('/AddVst', async(req, res) => {
+    Producer.sequelize.query("CALL addLinkVst(?, ?, ?)",
+    {
+        replacements: req.body.params
+    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
+})
+
 producers.post('/deleteProducer', async(req, res) => {
     const admin = req.body.userID.admin; 
 
