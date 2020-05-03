@@ -17,6 +17,9 @@
         <b-row>
             <h2>Artists:</h2>
             <b-table v-if="artists.length > 0" striped hover :items="artists" :fields="artistFields">
+                <template v-slot:cell(stageName)="data">
+                    <router-link :to="'/ArtistProfile/' + data.item.stageName">{{data.value}}</router-link>
+                </template>
                 <template v-slot:cell(wikiPage)="data">
                     <a :href="data.value">Wikipedia</a>
                 </template>

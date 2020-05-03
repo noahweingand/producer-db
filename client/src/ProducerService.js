@@ -57,6 +57,16 @@ class ProducerService {
         });
     }
 
+    static getArtistInfo(artist, jwt){
+        return axios.post(url+'/GetArtistInfo', {
+            params : [artist]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static getProducerDaws(producer, jwt){
         return axios.post(url+'/GetProducerDaws', {
             params : [producer]
