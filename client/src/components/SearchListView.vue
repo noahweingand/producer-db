@@ -16,6 +16,9 @@
         </template>
     </b-table>
     <b-table v-if="artists.length > 0 && searchCategory === 'All' || searchCategory === 'Artists'" striped hover :items="artists" :fields="artistFields">
+        <template v-slot:cell(stageName)="data">
+            <router-link :to="'/ArtistProfile/' + data.item.stageName">{{data.value}}</router-link>
+        </template>
         <template v-slot:cell(wikiPage)="data">
             <a :href="data.value">Wikipedia</a>
         </template>
