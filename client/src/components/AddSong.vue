@@ -96,12 +96,12 @@ import ProducerService from '../ProducerService';
     methods: {
       async onSubmit(evt) {
         evt.preventDefault()
-        let lengthCheck = /\d\d:\d\d:\d\d/; 
+        // let lengthCheck = /\d\d:\d\d:\d\d/; 
 
-        if(!lengthCheck.test(this.song_length)){
-          alert('Song Length must be in HH:mm:ss format!'); 
-          return; 
-        }
+        // if(!lengthCheck.test(this.song_length)){
+        //   alert('Song Length must be in HH:mm:ss format!'); 
+        //   return; 
+        // }
 
         try{
           await ProducerService.addSong(this.form, localStorage.getItem('jwt'));
