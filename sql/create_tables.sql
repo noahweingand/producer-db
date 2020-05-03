@@ -42,19 +42,6 @@ CREATE TABLE tag(
 	sound	varchar(50),
 	PRIMARY KEY (ID));
 
-CREATE TABLE affiliation(
-	ID			int NOT NULL AUTO_INCREMENT,
-	labelName	varchar(50),
-	netWorth	double,
-	PRIMARY KEY (ID));
-
-CREATE TABLE award(
-	ID			int NOT NULL AUTO_INCREMENT,
-	name		varchar(50),
-	year		date,
-	company	    varchar(50),
-	PRIMARY KEY(ID));
-
 CREATE TABLE vst(
 	ID				int NOT NULL AUTO_INCREMENT,
 	name		    varchar(50),
@@ -79,24 +66,8 @@ CREATE TABLE users(
 	passwordHash	char(40),
 	Email		    varchar(50) UNIQUE,
 	Location	    varchar(50),
+	admin			boolean,
 	PRIMARY KEY (ID));
-
-CREATE TABLE admins(
-	ID				int NOT NULL AUTO_INCREMENT,
-	username	    varchar(15),
-	passwordHash	char(40),
-	email		    varchar(50),
-	location	    varchar(50),
-	PRIMARY KEY (ID));
-
--- CREATE TABLE credits(
--- 	producerID	int,
--- 	artistID	int,
--- 	songID		int,
--- 	PRIMARY KEY (producerID, artistID, songID),
--- 	FOREIGN KEY (producerID) REFERENCES producer(ID),
--- 	FOREIGN KEY (artistID) REFERENCES artist(ID),
--- 	FOREIGN KEY (songID) REFERENCES song(ID));
 
 CREATE TABLE producerCredits (
 	producerID int, 
@@ -141,17 +112,3 @@ CREATE TABLE hasTag(
 	PRIMARY KEY (producerID, tagID),
 	FOREIGN KEY (producerID) REFERENCES producer(ID), 
 	FOREIGN KEY (tagID) REFERENCES tag(ID)); 
-
-CREATE TABLE hasAward(
-	awardID		int,
-	producerID	int,
-	PRIMARY KEY (awardID, producerID),
-	FOREIGN KEY (awardID) REFERENCES award(ID),
-	FOREIGN KEY (producerID) REFERENCES producer(ID));
-
-CREATE TABLE hasAffiliation(
-	producerID		int, 
-	affiliationID	int,
-	PRIMARY KEY (producerID, affiliationID),
-	FOREIGN KEY (producerID) REFERENCES producer(ID), 
-	FOREIGN KEY (affiliationID) REFERENCES affiliation(ID)); 
