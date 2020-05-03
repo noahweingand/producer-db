@@ -36,7 +36,7 @@ app.use('/api/users', users);
 const producers = require('./routes/api/producers'); 
 app.use('/api/producers', checkToken, producers); 
 
-const port = process.env.PORT || 8080;  // use whatever port the environment wants or 8088
+const port = process.env.PORT || 8087;  // use whatever port the environment wants or 8088
 
 app.listen(port, () => {
     console.log('server connected at ' + port);
