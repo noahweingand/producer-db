@@ -158,11 +158,25 @@ producers.post('/AddDaw', async(req, res) => {
     Producer.sequelize.query("CALL addLinkDaw(?, ?, ?)",
     {
         replacements: req.body.params
-    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
 })
 
 producers.post('/AddVst', async(req, res) => {
     Producer.sequelize.query("CALL addLinkVst(?, ?, ?)",
+    {
+        replacements: req.body.params
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
+producers.post('/AddHardware', async(req, res) => {
+    Producer.sequelize.query("CALL addLinkHardware(?, ?, ?)",
+    {
+        replacements: req.body.params
+    }).then( rows => res.send(rows)).catch(err => res.send(err)); 
+})
+
+producers.post('/AddTag', async(req, res) => {
+    Producer.sequelize.query("CALL addTag(?, ?, ?)",
     {
         replacements: req.body.params
     }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 

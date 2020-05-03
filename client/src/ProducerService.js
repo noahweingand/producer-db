@@ -117,6 +117,26 @@ class ProducerService {
         });
     }
 
+    static addHardware(producer, name, manu, jwt){
+        return axios.post(url+'/AddHardware', {
+            params : [producer, name, manu]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
+    static addTag(producer, name, manu, jwt){
+        return axios.post(url+'/AddTag', {
+            params : [producer, name, manu]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static deleteProducer(producer, jwt){
         return axios.post(url+'/deleteProducer', {
             params : [producer]

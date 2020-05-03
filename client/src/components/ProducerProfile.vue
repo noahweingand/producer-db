@@ -10,6 +10,7 @@
         </b-table>
 
         <h2>Tags:</h2>
+        <b-button v-b-modal="'add-tag-modal'" squared variant="success">Add a Tag</b-button>
         <b-table v-if="tags.length > 0" striped hover :items="tags" :fields="tagFields">
         <template v-slot:cell(sound)="data">
             <a :href="data.value">Audio Link</a>
@@ -32,6 +33,7 @@
         <b-alert v-else variant="danger" class="mt-5 pt-5" v-cloak show>No VSTs found...</b-alert>
 
         <h2>Hardware:</h2>
+        <b-button v-b-modal="'add-hardware-modal'" squared variant="success">Add Hardware</b-button>
         <b-table v-if="hardware.length > 0" striped hover :items="hardware" :fields="toolsFields">
         
         </b-table>
@@ -42,6 +44,13 @@
     <b-modal @ok="deleteListen" variant="danger" id="delete-modal">
         <h3>Are you sure you want to delete the producer, {{ this.producer }}? This cannot be undone.</h3>
     </b-modal>
+    <b-modal @ok="addTagListen" variant="success" id="add-tag-modal">
+        <h3>Add a tag that {{this.producer}} uses in their beats:</h3>
+        <h4>Phrase (Name):</h4>
+        <b-input v-model="addName"> </b-input>
+        <h4>Audio Link:</h4>
+        <b-input v-model="addManu"> </b-input>
+    </b-modal>
     <b-modal @ok="addDawListen" variant="success" id="add-daw-modal">
         <h3>Type in a Digital Audio Workshop's name and manufacturer that {{this.producer}} uses:</h3>
         <h4>Name:</h4>
@@ -51,6 +60,13 @@
     </b-modal>
     <b-modal @ok="addVstListen" variant="success" id="add-vst-modal">
         <h3>Type in a Virtual Studio Technology's name and manufacturer that {{this.producer}} uses:</h3>
+        <h4>Name:</h4>
+        <b-input v-model="addName"> </b-input>
+        <h4>Manufacturer:</h4>
+        <b-input v-model="addManu"> </b-input>
+    </b-modal>
+    <b-modal @ok="addHardwareListen" variant="success" id="add-hardware-modal">
+        <h3>Type in a hardware's name and manufacturer that {{this.producer}} uses:</h3>
         <h4>Name:</h4>
         <b-input v-model="addName"> </b-input>
         <h4>Manufacturer:</h4>
@@ -103,6 +119,12 @@ export default {
         async AddVst(){
             return await ProducerService.addVst(this.producer, this.addName, this.addManu, localStorage.getItem('jwt'));
         },
+        async AddHardware(){
+            return await ProducerService.addHardware(this.producer, this.addName, this.addManu, localStorage.getItem('jwt'));
+        },
+        async AddTag(){
+            return await ProducerService.addTag(this.producer, this.addName, this.addManu, localStorage.getItem('jwt'));
+        },
         async deleteProducer(){
             return await ProducerService.deleteProducer(this.producer, localStorage.getItem('jwt'));
         },
@@ -120,6 +142,16 @@ export default {
         addVstListen: function(){
             this.AddVst().then(() => {
                 alert("VST successfully added!"); 
+            }).catch( (err) => console.log(err));
+        },
+        addHardwareListen: function(){
+            this.AddHardware().then(() => {
+                alert("Hardware successfully added!"); 
+            }).catch( (err) => console.log(err));
+        },
+        addTagListen: function(){
+            this.AddTag().then(() => {
+                alert("Tag successfully added!"); 
             }).catch( (err) => console.log(err));
         }
     },
