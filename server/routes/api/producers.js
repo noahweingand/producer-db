@@ -18,6 +18,7 @@ producers.post('/', async (req, res) =>  {
 
 producers.post('/addProducer', async(req, res) => {
     info = req.body.params
+    
     console.log(info); 
     Producer.create({
         producerName: info.producerName, 
@@ -27,7 +28,7 @@ producers.post('/addProducer', async(req, res) => {
         wikiPage: info.wiki, 
         instagram: info.instagram, 
         twitter: info.twitter, 
-        dob: info.dob || null 
+        dob: info.dob.trim() || null 
     }).then((result) => {
         res.send(result); 
     }).catch(err => {

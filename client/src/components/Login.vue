@@ -19,7 +19,6 @@
     <!-- Remind Passowrd -->
         <div id="formFooter">
            <router-link :to="{name: 'Register', params: {msg: 'Register'}}" class="underlineHover">Register</router-link>
-           <router-link to="/" style="display: block" class="underlineHover">Continue Without Logging In</router-link>
         </div>
 
       </div>

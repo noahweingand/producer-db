@@ -134,8 +134,13 @@ import ProducerService from '../ProducerService';
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        ProducerService.insertProducer(this.form, localStorage.getItem('jwt'))
-        alert(JSON.stringify(this.form))
+        try{
+          ProducerService.insertProducer(this.form, localStorage.getItem('jwt'))
+          alert('Producer Submitted Successfully'); 
+          this.$router.push('/'); 
+        }catch(err){
+          alert(err); 
+        }
       },
       onReset(evt) {
         evt.preventDefault()
