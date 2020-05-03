@@ -21,11 +21,7 @@ Node version: v12.16.2
 Had to run npm install in client and server - Noah
 ### To do
 * sanitize inputs?
-* SEARCH
-    * search so far: producer, artist, all
-        * Still need: song, tag, tools
 * DB  
-    * Remove email for producers/artists from db? Probably don't need it
     * FILL DAT BITCH NO CAP 😂
 * Login Log Trigger
 * Artist Page
