@@ -97,6 +97,26 @@ class ProducerService {
         });
     }
 
+    static addDaw(producer, name, manu, jwt){
+        return axios.post(url+'/AddDaw', {
+            params : [producer, name, manu]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
+    static addVst(producer, name, manu, jwt){
+        return axios.post(url+'/AddVst', {
+            params : [producer, name, manu]
+        }, {
+            headers: {
+                Authorization: jwt
+            }
+        });
+    }
+
     static deleteProducer(producer, jwt){
         return axios.post(url+'/deleteProducer', {
             params : [producer]
