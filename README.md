@@ -40,6 +40,5 @@ Had to run npm install in client and server - Noah
     * make on update cascades and on delete cascades
     * consider adding boolean admin attribute to users table so only admins can delete a producer
     * consider option if someone wants to add more credits to a specific song
-    * procedure for adding daws to a producer 
 
 ### Links for developing

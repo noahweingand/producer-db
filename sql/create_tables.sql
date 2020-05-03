@@ -89,8 +89,8 @@ CREATE TABLE usesDaw(
 	dawID		int,
 	producerID	int,
 	PRIMARY KEY (dawID, producerID),
-	FOREIGN KEY (dawID) REFERENCES daw(ID),
-	FOREIGN KEY (producerID) REFERENCES producer(ID)); 
+	FOREIGN KEY (dawID) REFERENCES daw(ID) ON DELETE CASCADE,
+	FOREIGN KEY (producerID) REFERENCES producer(ID) ON DELETE CASCADE); 
 
 CREATE TABLE usesHardware(
 	hardwareID	int,
@@ -103,8 +103,8 @@ CREATE TABLE usesVst(
 	vstID		    int,
 	producerID		int,
 	PRIMARY KEY (vstID, producerID),
-	FOREIGN KEY (vstID) REFERENCES vst(ID),
-	FOREIGN KEY (producerID) REFERENCES producer(ID));
+	FOREIGN KEY (vstID) REFERENCES vst(ID) ON DELETE CASCADE, 
+	FOREIGN KEY (producerID) REFERENCES producer(ID) ON DELETE CASCADE);
 
 CREATE TABLE hasTag(
 	producerID	int, 
