@@ -81,10 +81,10 @@ export default {
             return await ProducerService.deleteProducer(this.producer, localStorage.getItem('jwt'));
         },
         deleteListen: function(){
-            this.deleteProducer().then(() => {
-                alert(this.producer + "has been deleted!")
+            this.deleteProducer().then(( result ) => {
+                alert(result.data.status); 
                 this.$router.push({name: 'Home'})
-            })
+            }).catch( (err) => console.log(err)); 
         }
     },
     created: function(){

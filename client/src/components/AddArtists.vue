@@ -59,6 +59,7 @@
         <b-form-input
           id="input-6"
           v-model="form.wiki"
+          type="url"
           placeholder="Wiki URL"
         ></b-form-input>
       </b-form-group>
@@ -114,6 +115,7 @@ import ProducerService from '../ProducerService';
         try{
           await ProducerService.insertArtist(this.form, localStorage.getItem('jwt'))
           alert('Insert successful!'); 
+          this.$router.push('/'); 
         }catch(er){
           alert('Insert not successful')
         }
