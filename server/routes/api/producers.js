@@ -155,10 +155,25 @@ producers.post('/GetProducerTags', async(req, res) => {
 })
 
 producers.post('/deleteProducer', async(req, res) => {
+    const admin = req.body.userID.admin; 
+
+    console.log('ADMIN' + admin); 
+
+    if(!admin) {
+        res.json({
+            status: 'User not an admin!'
+        }); 
+        return ; 
+    }
+
     Producer.sequelize.query("DELETE FROM producer WHERE producerName = ?", 
     {
         replacements: req.body.params
-    }).then( rows => {res.send(rows); console.log(res)}).catch(err => res.send(err)); 
+    }).then( rows => {
+        res.json({
+            status: 'Producer Deleted Successfully!'
+        }); 
+    }).catch(err => res.send(err)); 
 })
 
 module.exports = producers; 

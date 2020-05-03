@@ -1,6 +1,6 @@
 CREATE TABLE producer(
 	ID				int NOT NULL AUTO_INCREMENT,
-    producerName	varchar(50) NOT NULL,
+    producerName	varchar(50) NOT NULL UNIQUE,
     firstName		varchar(20),
     lastName		varchar(20),
     dob			    date,
@@ -69,7 +69,7 @@ CREATE TABLE hardware(
 
 CREATE TABLE daw(
 	ID				int NOT NULL AUTO_INCREMENT,
-	name		    varchar(50),
+	name		    varchar(50) UNIQUE,
 	manufacturer 	varchar(25),
 	PRIMARY KEY(ID));
 
@@ -77,7 +77,7 @@ CREATE TABLE users(
 	ID				int NOT NULL AUTO_INCREMENT,
 	username	    varchar(15),
 	passwordHash	char(40),
-	Email		    varchar(50),
+	Email		    varchar(50) UNIQUE,
 	Location	    varchar(50),
 	PRIMARY KEY (ID));
 
