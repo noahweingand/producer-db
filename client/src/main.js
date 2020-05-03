@@ -11,6 +11,7 @@ import Register from './components/Register.vue';
 import Home from './components/Home.vue'; 
 import ProducerSongs from './components/ProducerSongs.vue'; 
 import ProducerProfile from './components/ProducerProfile.vue';
+import ArtistProfile from './components/ArtistProfile.vue';
 import SearchListView from './components/SearchListView.vue'; 
 import AddProducers from './components/AddProducers.vue'; 
 import AddArtists from './components/AddArtists.vue'; 
@@ -42,6 +43,12 @@ const router = new VueRouter({
       path: '/ProducerProfile/:producer',
       name: 'ProducerProfile',
       component: ProducerProfile,
+      props: true
+    },
+    {
+      path: '/ArtistProfile/:artist',
+      name: 'ArtistProfile',
+      component: ArtistProfile,
       props: true
     },
     {
