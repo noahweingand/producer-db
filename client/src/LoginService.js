@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://3.234.246.29:8087/api/Users/'
+const url = 'api/Users/'
 
 class LoginService {
     static loginUser(email, password){

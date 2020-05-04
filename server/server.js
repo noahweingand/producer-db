@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(cors()); 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+
 // middleware for dumbass cors 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); 
@@ -36,6 +37,9 @@ app.use('/api/users', users);
 const producers = require('./routes/api/producers'); 
 app.use('/api/producers', checkToken, producers); 
 
+app.use(express.static(__dirname + '/public/')); 
+
+app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 const port = process.env.PORT || 8087;  // use whatever port the environment wants or 8088
 
 app.listen(port, () => {

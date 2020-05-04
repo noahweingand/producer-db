@@ -1,6 +1,6 @@
 import axios from 'axios'; 
 
-const url = 'http://3.234.246.29:8087/api/producers'; 
+const url = 'api/producers'; 
 
 class ProducerService {
     static getAllProducers(params, jwt){
