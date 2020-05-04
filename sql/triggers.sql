@@ -1,4 +1,4 @@
-DROP TRIGGER sanitizeSocialMedia; 
+DROP TRIGGER IF EXISTS sanitizeSocialMedia; 
 
 DELIMITER //
 CREATE TRIGGER sanitizeSocialMedia
