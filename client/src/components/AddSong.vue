@@ -1,7 +1,7 @@
 <template> 
 <b-container>
 <div class="pr-5 pl-5 mr-5 mt-5 pt-5 center">
-    <div class="mt-5 pt-5">
+    <div class="mt-5">
         <h1>Add a Song</h1>
     </div>
     <div class="pr-5 pl-5 mr-5 ml-5 pt-5">
@@ -98,17 +98,17 @@ import ProducerService from '../ProducerService';
     methods: {
       async onSubmit(evt) {
         evt.preventDefault()
-        // let lengthCheck = /\d\d:\d\d:\d\d/; 
 
-        // if(!lengthCheck.test(this.song_length)){
-        //   alert('Song Length must be in HH:mm:ss format!'); 
-        //   return; 
-        // }
+        //check proper time format
+
+        let message = undefined
 
         try{
-          await ProducerService.addSong(this.form, localStorage.getItem('jwt'));
-          this.$router.push('/AddSong')
+          message = await ProducerService.addSong(this.form, localStorage.getItem('jwt')); 
+          alert(message.data.status); 
+          this.$router.push('/')
         }catch(err){
+          alert('Song not inserted properly'); 
           console.log(err); 
         }
       },

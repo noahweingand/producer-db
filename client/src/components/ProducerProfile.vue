@@ -2,7 +2,7 @@
 <b-container fluid="lg">
 <div>
     <div v-if="info.length > 0">
-        <h1 class="bd-title pt-5 mt-5 mb-5"> Producer: {{ this.producer }} </h1>
+        <h1 class="bd-title mt-5 mb-5 pt-5"> Producer: {{ this.producer }} </h1>
         <b-table striped hover :items="info" :fields="infoFields">
         <template v-slot:cell(wikiPage)="data">
             <a :href="data.value">Wikipedia</a>

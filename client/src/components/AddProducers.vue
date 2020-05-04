@@ -1,7 +1,7 @@
 <template> 
 <b-container>
 <div class="pr-5 pl-5 mr-5 mt-5 pt-5 center">
-    <div class="mt-5 pt-5">
+    <div class="mt-5">
         <h1>Add a Producer</h1>
     </div>
     <div class="pr-5 pl-5 mr-5 ml-5 pt-5">

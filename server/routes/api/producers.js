@@ -11,6 +11,7 @@ const ArtistCredits = require('../../../models/artistCredits');
 
 producers.post('/', async (req, res) =>  {
     Producer.findAll({   
+        order: [ ['producerName', 'ASC']], 
         attributes: req.body.params
     })
     .then(rows => res.send(rows)).catch(err => res.send(err)); 
@@ -55,7 +56,8 @@ producers.post('/addArtist', async(req, res) => {
 producers.post('/getAllArtists', async (req, res) =>  {
     
     Artist.findAll({   
-        attributes: req.body.params
+        attributes: req.body.params, 
+        order: [['stageName', 'ASC']]
     }).then(rows => res.send(rows)).catch(err => res.send(err)); 
     });
 
@@ -83,39 +85,80 @@ producers.post('/GetSongs', async (req, res) => {
 })
 
 producers.post('/AddSong', async (req, res) => {
-    Song.create({
-        title: req.body.params.songName, 
-        length: req.body.params.song_length,
-        album: req.body.params.album_name, 
-        genre: req.body.params.genre
-    }).then( (result) => {
-        var songID = result.dataValues.id; // store the id of the newly created song
-        const allProducers = req.body.params.producerNames; 
-        const allArtists = req.body.params.artistNames; 
-
-        for(let prod of allProducers){
-            Producer.sequelize.query(`SELECT ID from producer WHERE producerName = ?`, {replacements: [prod]})
-                .then( (result) => {
-                   var prodID = result[0][0].ID; 
-
-                   ProducerCredits.sequelize.query(`INSERT INTO producerCredits VALUES(?, ?)`, {replacements: [prodID, songID]})
-                        .then((result) => { 
-                            console.log('success') 
-                        }).catch( (err) => console.log('Error submitting Producer Credits')); 
-                }).catch((err) => console.log(err)); 
+    Song.findOne({
+        where: {
+            album: req.body.params.album_name, 
+            title: req.body.params.songName
         }
+    }).then( (song) => {
+        if(!song){
+            Song.create({
+                title: req.body.params.songName, 
+                length: req.body.params.song_length,
+                album: req.body.params.album_name, 
+                genre: req.body.params.genre
+            }).then((result) => {
+                var songID = result.dataValues.id; // store the id of the newly created song
+                const allProducers = req.body.params.producerNames; 
+                const allArtists = req.body.params.artistNames; 
 
-        for(let artist of allArtists){
-            Artist.sequelize.query(`SELECT ID from artist WHERE stageName = ?`, {replacements: [artist]})
-                .then( (result) => {
-                var artistID = result[0][0].ID; 
+                for(let prod of allProducers){
+                    Producer.sequelize.query(`SELECT ID from producer WHERE producerName = ?`, {replacements: [prod]})
+                        .then( (result) => {
+                        var prodID = result[0][0].ID; 
 
-                ArtistCredits.sequelize.query(`INSERT INTO artistCredits VALUES(?, ?)`, {replacements: [artistID, songID]})
-                        .then((result) => console.log('success') ).catch( (err) => console.log('Error submitting Producer Credits')); 
-                }).catch((err) => console.log(err)); 
+                        ProducerCredits.sequelize.query(`INSERT INTO producerCredits VALUES(?, ?)`, {replacements: [prodID, songID]})
+                                .then((result) => { 
+                                    console.log('success') 
+                                }).catch( (err) => console.log('Error submitting Producer Credits')); 
+                        }).catch((err) => console.log(err)); 
+                }
+
+                for(let artist of allArtists){
+                    Artist.sequelize.query(`SELECT ID from artist WHERE stageName = ?`, {replacements: [artist]})
+                        .then( (result) => {
+                        var artistID = result[0][0].ID; 
+
+                        ArtistCredits.sequelize.query(`INSERT INTO artistCredits VALUES(?, ?)`, {replacements: [artistID, songID]})
+                                .then((result) => console.log('success') ).catch( (err) => console.log('Error submitting Producer Credits')); 
+                        }).catch((err) => console.log(err)); 
+                }
+
+                res.json({
+                    status: 'Insert Successful!'
+                }); 
+            })
+        }else{
+            var songID = song.dataValues.id; // store the id of found song
+            const allProducers = req.body.params.producerNames; 
+            const allArtists = req.body.params.artistNames; 
+
+            for(let prod of allProducers){
+                Producer.sequelize.query(`SELECT ID from producer WHERE producerName = ?`, {replacements: [prod]})
+                    .then( (result) => {
+                    var prodID = result[0][0].ID; 
+
+                    ProducerCredits.sequelize.query(`INSERT INTO producerCredits VALUES(?, ?)`, {replacements: [prodID, songID]})
+                            .then((result) => { 
+                                console.log('success') 
+                            }).catch( (err) => console.log('Error submitting Producer Credits')); 
+                    }).catch((err) => console.log(err)); 
+            }
+
+            for(let artist of allArtists){
+                Artist.sequelize.query(`SELECT ID from artist WHERE stageName = ?`, {replacements: [artist]})
+                    .then( (result) => {
+                    var artistID = result[0][0].ID; 
+
+                    ArtistCredits.sequelize.query(`INSERT INTO artistCredits VALUES(?, ?)`, {replacements: [artistID, songID]})
+                            .then((result) => console.log('success') ).catch( (err) => console.log('Error submitting Producer Credits')); 
+                    }).catch((err) => console.log(err)); 
+            }
+
+            res.json({
+                status: 'Insert Successful!'
+            }); 
         }
-
-        res.send(result); 
     }).catch( (err) => {
         console.log(err); 
         res.send(err); 

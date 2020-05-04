@@ -5,7 +5,7 @@
         <HomeListView></HomeListView>
     </div>
     <div v-else>
-        <h1 class="mb-5 mt-5 pt-5">Login to view content</h1>
+        <h1 class="mb-5 mt-5">Login to view content</h1>
     </div>
 </template>
 <script>

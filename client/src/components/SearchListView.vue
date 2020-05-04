@@ -4,28 +4,34 @@
     <b-alert variant="success" class="mt-5 pt-5" v-if="this.searchQuery === undefined || this.searchQuery.trim() === ''" show>Please use a search parameter</b-alert>
     <section class="bd-content" v-else>
     <b-alert variant="success" class="mt-5 pt-5" show> Search Results for: {{ this.searchQuery }} </b-alert>
-    <b-table v-if="producers.length > 0 && (searchCategory === 'All' || searchCategory === 'Producers')" striped hover :items="producers" :fields="prodFields">
-        <template v-slot:cell(producerName)="data">
-            <router-link :to="'/ProducerProfile/' + data.item.producerName">{{data.value}}</router-link>
-        </template>
-        <template v-slot:cell(wikiPage)="data">
-            <a :href="data.value">Wikipedia</a>
-        </template>
-        <template v-slot:cell(song-link)="data">
-            <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
-        </template>
-    </b-table>
-    <b-table v-if="artists.length > 0 && searchCategory === 'All' || searchCategory === 'Artists'" striped hover :items="artists" :fields="artistFields">
-        <template v-slot:cell(stageName)="data">
-            <router-link :to="'/ArtistProfile/' + data.item.stageName">{{data.value}}</router-link>
-        </template>
-        <template v-slot:cell(wikiPage)="data">
-            <a :href="data.value">Wikipedia</a>
-        </template>
-        <!-- <template v-slot:cell(song-link)="data">
-            <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
-        </template> -->
-    </b-table>
+    <div v-if="producers.length > 0 && (searchCategory === 'All' || searchCategory === 'Producers')" >
+        <h1 class="text-left">Producers:</h1>
+        <b-table striped hover :items="producers" :fields="prodFields">
+            <template v-slot:cell(producerName)="data">
+                <router-link :to="'/ProducerProfile/' + data.item.producerName">{{data.value}}</router-link>
+            </template>
+            <template v-slot:cell(wikiPage)="data">
+                <a :href="data.value">Wikipedia</a>
+            </template>
+            <template v-slot:cell(song-link)="data">
+                <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
+            </template>
+        </b-table>
+    </div>
+    <div v-if="artists.length > 0 && searchCategory === 'All' || searchCategory === 'Artists'" >
+        <h1 class="text-left">Artists:</h1>
+        <b-table striped hover :items="artists" :fields="artistFields">
+            <template v-slot:cell(stageName)="data">
+                <router-link :to="'/ArtistProfile/' + data.item.stageName">{{data.value}}</router-link>
+            </template>
+            <template v-slot:cell(wikiPage)="data">
+                <a :href="data.value">Wikipedia</a>
+            </template>
+            <!-- <template v-slot:cell(song-link)="data">
+                <router-link :to="'/ProducerSongs/' + data.item.producerName">Credits</router-link>
+            </template> -->
+        </b-table>
+    </div>
     </section>
 </div>
 </b-container>
