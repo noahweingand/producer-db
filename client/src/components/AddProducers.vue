@@ -68,7 +68,7 @@
         <b-form-input
           id="input-7"
           v-model="form.instagram"
-          placeholder="Producer's instragram name"
+          placeholder="Producer's Instagram name"
         ></b-form-input>
       </b-form-group>
 
